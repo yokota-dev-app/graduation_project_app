@@ -241,4 +241,4 @@
 - Figmaで管理：[リンク](https://www.figma.com/design/tRwybLsPb1jv8dSkvLrkaD/%E3%83%97%E3%83%AD%E3%83%B3%E3%83%97%E3%83%88%E4%BD%9C%E6%88%90%E3%83%BB%E7%AE%A1%E7%90%86%E3%83%84%E3%83%BC%E3%83%AB?m=auto&t=D8APVCxXXiaAcTqY-1)
 
 #### ER図
-- [リンク](https://i.gyazo.com/7cb8e84aba646df5eddc9e596ecdbed4.png)
+[![Image from Gyazo](https://i.gyazo.com/082583da54241d29d645c7fc09770480.png)](https://gyazo.com/082583da54241d29d645c7fc09770480)
