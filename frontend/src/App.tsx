@@ -7,6 +7,7 @@ import LoginPage from './pages/auth/LoginPage'
 import SignupPage from './pages/auth/SignupPage'
 import DashboardLayout from './layouts/DashboardLayout'
 import MyPage from './pages/mypage/MyPage'
+import DashboardPlaceholder from './pages/mypage/DashboardPlaceholder'
 
 function PublicLayout() {
   return (
@@ -28,6 +29,8 @@ function App() {
       </Route>
       <Route path="/mypage" element={<DashboardLayout />}>
         <Route index element={<MyPage />} />
+        <Route path="create" element={<DashboardPlaceholder title="プロンプト作成" />} />
+        <Route path="settings" element={<DashboardPlaceholder title="設定" />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

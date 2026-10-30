@@ -226,6 +226,39 @@
   font-size: 13px;
 }
 
+.workspaceActions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 18px clamp(22px, 4vw, 56px) 0;
+}
+
+.createPromptButton {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 16px;
+  border: 1px solid #34265b;
+  border-radius: 9px;
+  background: #34265b;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 650;
+  text-decoration: none;
+  transition: background 150ms ease, transform 150ms ease;
+}
+
+.createPromptButton:hover {
+  transform: translateY(-1px);
+  background: #463675;
+}
+
+.createPromptButton > span {
+  font-size: 18px;
+  line-height: 1;
+}
+
 .pageContent {
   width: 100%;
   max-width: 1500px;

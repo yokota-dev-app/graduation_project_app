@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../features/auth/useAuth';
 import styles from './DashboardLayout.module.css';
 
@@ -33,10 +33,26 @@ export default function DashboardLayout() {
         </Link>
 
         <nav className={styles.primaryNav} aria-label="メインメニュー">
-          <Link className={styles.navLink} to="/">⌂ <span>ホーム</span></Link>
-          <Link className={`${styles.navLink} ${styles.activeNavLink}`} to="/mypage">
+          <NavLink
+            className={({ isActive }) => `${styles.navLink} ${isActive ? styles.activeNavLink : ''}`}
+            end
+            to="/"
+          >
+            ⌂ <span>ホーム</span>
+          </NavLink>
+          <NavLink
+            className={({ isActive }) => `${styles.navLink} ${isActive ? styles.activeNavLink : ''}`}
+            end
+            to="/mypage"
+          >
             ▤ <span>マイプロンプト</span>
-          </Link>
+          </NavLink>
+          <NavLink
+            className={({ isActive }) => `${styles.navLink} ${isActive ? styles.activeNavLink : ''}`}
+            to="/mypage/settings"
+          >
+            ⚙ <span>設定</span>
+          </NavLink>
         </nav>
 
         <div className={styles.sidebarDivider} />
@@ -80,6 +96,12 @@ export default function DashboardLayout() {
         </header>
 
         {logoutError && <p className={styles.logoutError} role="alert">{logoutError}</p>}
+        <div className={styles.workspaceActions}>
+          <Link className={styles.createPromptButton} to="/mypage/create">
+            <span aria-hidden="true">＋</span>
+            プロンプト作成
+          </Link>
+        </div>
         <main className={styles.pageContent}>
           <Outlet context={searchQuery} />
         </main>
