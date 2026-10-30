@@ -29,23 +29,38 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 11px;
   margin: 0 0 34px 5px;
-  color: var(--ink);
-  font-size: 18px;
-  font-weight: 750;
+  color: #20212a;
+  font-family: "DM Sans", "Noto Sans JP", sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.7px;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .brandMark {
-  display: grid;
-  width: 32px;
-  height: 32px;
-  place-items: center;
-  border-radius: 10px;
-  background: #332166;
-  color: white;
-  font-size: 17px;
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+}
+
+.brandMark svg {
+  width: 100%;
+  height: 100%;
+}
+
+.brandMark rect {
+  fill: #6854d9;
+}
+
+.brandMark path {
+  fill: none;
+  stroke: white;
+  stroke-width: 2.4;
+  stroke-linecap: round;
 }
 
 .primaryNav {
@@ -165,19 +180,24 @@
 .searchForm {
   display: flex;
   width: min(100%, 560px);
-  min-height: 44px;
+  height: 46px;
   align-items: center;
   gap: 10px;
   padding: 0 13px;
-  border: 1px solid #e6e5e9;
-  border-radius: 10px;
-  background: #fafafd;
-  color: #77747e;
+  border: 1px solid #e7e5ee;
+  border-radius: 11px;
+  background: #faf9fc;
+  color: #7a7b89;
 }
 
-.searchForm > span {
-  font-size: 25px;
-  line-height: 1;
+.searchForm > svg {
+  width: 21px;
+  height: 21px;
+  flex: 0 0 21px;
+  fill: none;
+  stroke: #7a7b89;
+  stroke-width: 1.8;
+  stroke-linecap: round;
 }
 
 .searchForm input {
@@ -188,11 +208,11 @@
   background: transparent;
   color: var(--ink);
   font: inherit;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .searchForm input::placeholder {
-  color: #9997a0;
+  color: #9999a6;
 }
 
 .searchForm button {
@@ -234,25 +254,6 @@
   padding: 38px clamp(22px, 4vw, 56px) 56px;
 }
 
-.footer {
-  display: flex;
-  justify-content: center;
-  gap: clamp(24px, 7vw, 100px);
-  padding: 22px;
-  border-top: 1px solid var(--line);
-  background: white;
-}
-
-.footer a {
-  color: #77747e;
-  font-size: 12px;
-  text-decoration: none;
-}
-
-.footer a:hover {
-  color: #302058;
-}
-
 @media (max-width: 760px) {
   .sidebar {
     flex-basis: 70px;
@@ -292,6 +293,10 @@
     padding-inline: 14px;
   }
 
+  .searchForm {
+    height: 43px;
+  }
+
   .logoutButton {
     padding: 9px 10px;
     font-size: 11px;
@@ -301,10 +306,6 @@
     padding: 28px 18px 40px;
   }
 
-  .footer {
-    flex-wrap: wrap;
-    gap: 12px 24px;
-  }
 }
 
 @media (max-width: 430px) {
@@ -313,13 +314,7 @@
     padding-inline: 5px;
   }
 
-  .brandMark {
-    width: 29px;
-    height: 29px;
-  }
-
   .searchForm {
-    min-height: 40px;
     gap: 6px;
     padding-inline: 9px;
   }

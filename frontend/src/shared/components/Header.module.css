@@ -80,7 +80,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  width: min(370px, 34vw);
+  width: min(560px, 42vw);
   height: 46px;
   padding: 0 13px;
   border: 1px solid #e7e5ee;
@@ -110,17 +110,6 @@
 
 .top-search input::placeholder {
   color: #9999a6;
-}
-
-.top-search button {
-  border: 0;
-  padding: 6px 9px;
-  border-radius: 7px;
-  background: #efedf8;
-  color: var(--top-purple-dark);
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
 }
 
 .top-header-actions {

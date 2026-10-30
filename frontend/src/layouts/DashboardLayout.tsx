@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../features/auth/useAuth';
+import Footer from '../shared/components/Footer';
 import styles from './DashboardLayout.module.css';
 
 export default function DashboardLayout() {
@@ -28,7 +29,12 @@ export default function DashboardLayout() {
     <div className={styles.dashboard}>
       <aside className={styles.sidebar}>
         <Link className={styles.brand} to="/" aria-label="PromptShelf ホーム">
-          <span className={styles.brandMark} aria-hidden="true">P</span>
+          <span className={styles.brandMark} aria-hidden="true">
+            <svg viewBox="0 0 40 40">
+              <rect x="3" y="3" width="34" height="34" rx="11" />
+              <path d="M13 13h14M13 20h14M13 27h8" />
+            </svg>
+          </span>
           <span>PromptShelf</span>
         </Link>
 
@@ -74,7 +80,10 @@ export default function DashboardLayout() {
       <div className={styles.mainColumn}>
         <header className={styles.topbar}>
           <form className={styles.searchForm} role="search" onSubmit={handleSearchSubmit}>
-            <span aria-hidden="true">⌕</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="10.8" cy="10.8" r="6.8" />
+              <path d="m16 16 5 5" />
+            </svg>
             <input
               type="search"
               aria-label="プロンプトを検索"
@@ -99,11 +108,7 @@ export default function DashboardLayout() {
         <main className={styles.pageContent}>
           <Outlet context={searchQuery} />
         </main>
-        <footer className={styles.footer}>
-          <a href="/terms">利用規約</a>
-          <a href="/privacy">プライバシーポリシー</a>
-          <a href="/contact">お問い合わせ</a>
-        </footer>
+        <Footer />
       </div>
     </div>
   );
