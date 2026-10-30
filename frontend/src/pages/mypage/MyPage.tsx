@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 import { getMyPrompts } from '../../features/prompts/api';
 import PromptCard from '../../features/prompts/components/PromptCard';
 import type { Prompt } from '../../features/prompts/types';
@@ -47,9 +47,15 @@ export default function MyPage() {
           <h1 id="mypage-title">マイプロンプト</h1>
           <p className={styles.description}>保存したプロンプトを一覧で確認できます。</p>
         </div>
-        {!loading && !error && (
-          <span className={styles.promptCount}>{filteredPrompts.length} 件</span>
-        )}
+        <div className={styles.headingActions}>
+          <Link className={styles.createPromptButton} to="/mypage/create">
+            <span aria-hidden="true">＋</span>
+            プロンプト作成
+          </Link>
+          {!loading && !error && (
+            <span className={styles.promptCount}>{filteredPrompts.length} 件</span>
+          )}
+        </div>
       </div>
 
       {loading && <p className={styles.statusMessage} role="status">プロンプトを読み込み中...</p>}

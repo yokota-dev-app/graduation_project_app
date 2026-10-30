@@ -96,12 +96,6 @@ export default function DashboardLayout() {
         </header>
 
         {logoutError && <p className={styles.logoutError} role="alert">{logoutError}</p>}
-        <div className={styles.workspaceActions}>
-          <Link className={styles.createPromptButton} to="/mypage/create">
-            <span aria-hidden="true">＋</span>
-            プロンプト作成
-          </Link>
-        </div>
         <main className={styles.pageContent}>
           <Outlet context={searchQuery} />
         </main>

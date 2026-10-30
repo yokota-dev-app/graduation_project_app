@@ -4,10 +4,46 @@
 
 .pageHeading {
   display: flex;
-  align-items: flex-end;
+  align-items: stretch;
   justify-content: space-between;
   gap: 18px;
   margin-bottom: 28px;
+}
+
+.headingActions {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-self: stretch;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.createPromptButton {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 16px;
+  border: 1px solid #34265b;
+  border-radius: 9px;
+  background: #34265b;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 650;
+  text-decoration: none;
+  transition: background 150ms ease, transform 150ms ease;
+}
+
+.createPromptButton:hover {
+  transform: translateY(-1px);
+  background: #463675;
+}
+
+.createPromptButton > span {
+  font-size: 18px;
+  line-height: 1;
 }
 
 .eyebrow {
