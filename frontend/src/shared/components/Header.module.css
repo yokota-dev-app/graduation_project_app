@@ -1,0 +1,233 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --top-ink: #20212a;
+  --top-purple: #6854d9;
+  --top-purple-dark: #5140bd;
+  --top-font: "DM Sans", "Noto Sans JP", sans-serif;
+}
+
+/* グローバルに適用したいスタイルやリセットは :global で囲むか、共通CSSに記述します */
+
+:global(*) {
+  box-sizing: border-box;
+}
+
+:global(html) {
+  scroll-behavior: smooth;
+}
+
+:global(body) {
+  margin: 0;
+  color: var(--top-ink);
+  font-family: var(--top-font);
+}
+
+:global(a) {
+  color: inherit;
+  text-decoration: none;
+}
+
+:global(button),
+:global(input) {
+  font: inherit;
+}
+
+.top-header {
+  height: 88px;
+  padding: 0 clamp(24px, 6vw, 92px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  border-bottom: 1px solid #f0eff5;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.top-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.7px;
+  white-space: nowrap;
+}
+
+.top-brand-mark {
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+}
+
+.top-brand-mark svg {
+  width: 100%;
+  height: 100%;
+}
+
+.top-brand-mark rect {
+  fill: var(--top-purple);
+}
+
+.top-brand-mark path {
+  fill: none;
+  stroke: white;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+
+.top-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: min(370px, 34vw);
+  height: 46px;
+  padding: 0 13px;
+  border: 1px solid #e7e5ee;
+  border-radius: 11px;
+  background: #faf9fc;
+}
+
+.top-search > svg {
+  flex: 0 0 21px;
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: #7a7b89;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+}
+
+.top-search input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--top-ink);
+  font-size: 14px;
+}
+
+.top-search input::placeholder {
+  color: #9999a6;
+}
+
+.top-search button {
+  border: 0;
+  padding: 6px 9px;
+  border-radius: 7px;
+  background: #efedf8;
+  color: var(--top-purple-dark);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.top-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.top-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  min-height: 46px;
+  padding: 0 20px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+  white-space: nowrap;
+}
+
+.top-button:hover {
+  transform: translateY(-1px);
+}
+
+.top-button-quiet {
+  color: #4c4a5b;
+  border-color: #e8e6ef;
+  background: #fff;
+}
+
+.top-button-quiet:hover {
+  background: #f8f7fc;
+}
+
+.top-button-dark {
+  color: #fff;
+  background: #292633;
+}
+
+.top-button-dark:hover {
+  background: #3a3547;
+}
+
+@media (max-width: 1000px) {
+  .top-header {
+    gap: 16px;
+    padding-inline: 28px;
+  }
+
+  .top-search {
+    width: min(300px, 30vw);
+  }
+}
+
+@media (max-width: 760px) {
+  .top-header {
+    height: auto;
+    min-height: 72px;
+    padding: 14px 20px;
+    flex-wrap: wrap;
+  }
+
+  .top-brand {
+    font-size: 19px;
+  }
+
+  .top-brand-mark {
+    width: 31px;
+    height: 31px;
+  }
+
+  .top-search {
+    order: 3;
+    width: 100%;
+    height: 43px;
+  }
+
+  .top-header-actions {
+    margin-left: auto;
+    gap: 7px;
+  }
+
+  .top-header-actions .top-button {
+    min-height: 38px;
+    padding-inline: 12px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 420px) {
+  .top-header-actions .top-button-quiet {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(html) {
+    scroll-behavior: auto;
+  }
+
+  :global(*),
+  :global(*::before),
+  :global(*::after) {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

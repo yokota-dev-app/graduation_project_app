@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --top-ink: #20212a;
+  --top-purple: #6854d9;
+  --top-font: "DM Sans", "Noto Sans JP", sans-serif;
+}
+
+/* グローバルに適用したいスタイルやリセットは :global で囲むか、共通CSSに記述します */
+
+:global(*) {
+  box-sizing: border-box;
+}
+
+:global(html) {
+  scroll-behavior: smooth;
+}
+
+:global(body) {
+  margin: 0;
+  color: var(--top-ink);
+  font-family: var(--top-font);
+}
+
+:global(a) {
+  color: inherit;
+  text-decoration: none;
+}
+
+:global(button),
+:global(input) {
+  font: inherit;
+}
+
+.top-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.7px;
+  white-space: nowrap;
+}
+
+.top-brand-mark {
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+}
+
+.top-brand-mark svg {
+  width: 100%;
+  height: 100%;
+}
+
+.top-brand-mark rect {
+  fill: var(--top-purple);
+}
+
+.top-brand-mark path {
+  fill: none;
+  stroke: white;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+
+.top-footer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 14px 30px;
+  padding: 32px clamp(24px, 6vw, 92px) 25px;
+  border-top: 1px solid #efedf5;
+}
+
+.top-footer-brand {
+  font-size: 18px;
+}
+
+.top-footer-brand .top-brand-mark {
+  width: 30px;
+  height: 30px;
+}
+
+.top-footer > p {
+  grid-column: 1;
+  margin: -6px 0 0 41px;
+  color: #92909d;
+  font-size: 10px;
+}
+
+.top-footer nav {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  color: #777485;
+  font-size: 11px;
+}
+
+.top-footer nav a:hover {
+  color: var(--top-purple);
+}
+
+.top-footer > small {
+  grid-column: 1 / -1;
+  margin-top: 14px;
+  padding-top: 18px;
+  border-top: 1px solid #f1eff5;
+  color: #aaa7b3;
+  font-size: 10px;
+}
+
+@media (max-width: 760px) {
+  .top-brand {
+    font-size: 19px;
+  }
+
+  .top-brand-mark {
+    width: 31px;
+    height: 31px;
+  }
+
+  .top-footer {
+    grid-template-columns: 1fr;
+    padding: 28px 22px 22px;
+  }
+
+  .top-footer nav {
+    grid-column: 1;
+    grid-row: auto;
+    gap: 18px;
+  }
+
+  .top-footer > p {
+    margin-top: -7px;
+  }
+
+  .top-footer > small {
+    grid-column: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(html) {
+    scroll-behavior: auto;
+  }
+
+  :global(*),
+  :global(*::before),
+  :global(*::after) {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
