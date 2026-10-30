@@ -1,0 +1,149 @@
+.myPage {
+  color: #28252f;
+}
+
+.pageHeading {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.headingActions {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-self: stretch;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.createPromptButton {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 16px;
+  border: 1px solid #34265b;
+  border-radius: 9px;
+  background: #34265b;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 650;
+  text-decoration: none;
+  transition: background 150ms ease, transform 150ms ease;
+}
+
+.createPromptButton:hover {
+  transform: translateY(-1px);
+  background: #463675;
+}
+
+.createPromptButton > span {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #7d6aab;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+}
+
+.pageHeading h1 {
+  margin: 0;
+  color: #28252f;
+  font-size: clamp(25px, 3vw, 32px);
+  font-weight: 750;
+  letter-spacing: -0.04em;
+}
+
+.description {
+  margin: 9px 0 0;
+  color: #85828c;
+  font-size: 13px;
+}
+
+.promptCount {
+  padding: 7px 11px;
+  border: 1px solid #e9e6ef;
+  border-radius: 20px;
+  background: white;
+  color: #66616f;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.promptGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.statusMessage,
+.errorMessage {
+  padding: 36px 20px;
+  color: #77747e;
+  font-size: 13px;
+  text-align: center;
+}
+
+.errorMessage {
+  color: #b42318;
+}
+
+.emptyState {
+  display: grid;
+  min-height: 270px;
+  align-content: center;
+  justify-items: center;
+  padding: 30px;
+  border: 1px dashed #dedbe4;
+  border-radius: 13px;
+  background: rgb(255 255 255 / 65%);
+  text-align: center;
+}
+
+.emptyState > span {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 50%;
+  background: #f0edf5;
+  color: #6d5a91;
+  font-size: 30px;
+}
+
+.emptyState h2 {
+  margin: 16px 0 6px;
+  color: #3a3741;
+  font-size: 15px;
+}
+
+.emptyState p {
+  margin: 0;
+  color: #85828c;
+  font-size: 12px;
+}
+
+@media (max-width: 1100px) {
+  .promptGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .pageHeading {
+    align-items: flex-start;
+  }
+
+  .promptGrid {
+    grid-template-columns: 1fr;
+    gap: 13px;
+  }
+}

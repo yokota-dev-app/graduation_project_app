@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { login } from '../../features/auth/api';
 import { useAuth } from '../../features/auth/useAuth';
 import styles from './auth.module.css';
@@ -13,6 +13,9 @@ export default function LoginPage() {
   const [submitting, setSubmitting] = useState(false);
   const { loginUser } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const redirectPath = (location.state as { from?: { pathname?: string } } | null)
+    ?.from?.pathname ?? '/';
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -22,7 +25,7 @@ export default function LoginPage() {
     try {
       const response = await login({ email, password });
       loginUser(response.user);
-      navigate('/', { replace: true });
+      navigate(redirectPath, { replace: true });
     } catch (requestError: unknown) {
       if (axios.isAxiosError(requestError) && requestError.response?.status === 401) {
         setError('メールアドレスまたはパスワードが正しくありません。');

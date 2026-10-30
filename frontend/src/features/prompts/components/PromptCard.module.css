@@ -1,0 +1,211 @@
+.card {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid #ecebf0;
+  border-radius: 13px;
+  background: #fff;
+  box-shadow: 0 3px 12px rgb(36 28 55 / 3%);
+  transition: box-shadow 160ms ease, transform 160ms ease;
+}
+
+.cardMenuOpen {
+  z-index: 2;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 9px 24px rgb(36 28 55 / 8%);
+}
+
+.cardHeading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cardHeading h2 {
+  overflow: hidden;
+  margin: 0;
+  color: #26232d;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.45;
+  text-overflow: ellipsis;
+}
+
+.cardActions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 4px;
+}
+
+.copyButton {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  place-items: center;
+  border: 1px solid #e9e7ed;
+  border-radius: 8px;
+  background: white;
+  color: #696572;
+  cursor: pointer;
+}
+
+.copyButton svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.copyButton:hover {
+  border-color: #c9c0dc;
+  color: #382569;
+}
+
+.menuContainer {
+  position: relative;
+}
+
+.menuToggle {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: #696572;
+  cursor: pointer;
+}
+
+.menuToggle:hover,
+.menuToggle[aria-expanded="true"] {
+  border-color: #e9e7ed;
+  background: #faf9fc;
+  color: #382569;
+}
+
+.menuToggle svg {
+  width: 19px;
+  height: 19px;
+  fill: currentColor;
+}
+
+.menu {
+  position: absolute;
+  z-index: 3;
+  top: calc(100% + 6px);
+  right: 0;
+  display: grid;
+  width: 136px;
+  padding: 5px;
+  border: 1px solid #e9e7ed;
+  border-radius: 9px;
+  background: #fff;
+  box-shadow: 0 8px 22px rgb(36 28 55 / 14%);
+}
+
+.menu button {
+  padding: 9px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #45424d;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  text-align: left;
+}
+
+.menu button:hover,
+.menu button:focus-visible {
+  outline: none;
+  background: #f5f3f8;
+}
+
+.menu .deleteAction {
+  color: #c33b36;
+}
+
+.menu .deleteAction:hover,
+.menu .deleteAction:focus-visible {
+  background: #fff1f0;
+}
+
+.summary {
+  min-height: 40px;
+  margin: 10px 0 18px;
+  color: #77747e;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.contentHeading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 9px;
+}
+
+.contentHeading h3 {
+  margin: 0;
+  color: #45424d;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.contentHeading span {
+  color: #a09da6;
+  font-size: 10px;
+}
+
+.promptContent {
+  min-height: 126px;
+  padding: 13px;
+  border: 1px solid #f0eef3;
+  border-radius: 9px;
+  background: #faf9fc;
+}
+
+.promptText {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0;
+  color: #65616c;
+  font: inherit;
+  font-size: 11px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+}
+
+.copyError {
+  margin-top: 8px;
+  color: #b42318;
+  font-size: 11px;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 15px;
+  color: #87848e;
+  font-size: 10px;
+}

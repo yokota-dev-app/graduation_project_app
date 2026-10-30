@@ -52,7 +52,6 @@ export default function Header() {
             value={searchQuery}
             onChange={(event) => setSearchQuery(event.target.value)}
           />
-          <button type="submit" aria-label="検索する">検索</button>
         </form>
 
         <nav className={styles.topHeaderActions} aria-label="アカウントメニュー">
