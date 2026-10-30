@@ -1,0 +1,330 @@
+.dashboard {
+  --ink: #242328;
+  --muted: #777780;
+  --line: #e9e8ec;
+  --surface: #ffffff;
+  display: flex;
+  min-height: 100vh;
+  color: var(--ink);
+  background: #f8f8fa;
+  font-family: Inter, "Noto Sans JP", system-ui, sans-serif;
+}
+
+.dashboard :global(*) {
+  box-sizing: border-box;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex: 0 0 248px;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 28px 18px 20px;
+  border-right: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 34px 5px;
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.brandMark {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 10px;
+  background: #332166;
+  color: white;
+  font-size: 17px;
+}
+
+.primaryNav {
+  display: grid;
+  gap: 6px;
+  margin-top: 24px;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-height: 42px;
+  padding: 0 12px;
+  border-radius: 8px;
+  color: #55535d;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.navLink > span:first-child {
+  font-size: 18px;
+}
+
+.activeNavLink {
+  background: #f0eef5;
+  color: #34265b;
+  font-weight: 700;
+}
+
+.sidebarDivider {
+  height: 1px;
+  margin: 22px 0 18px;
+  background: var(--line);
+}
+
+.quickLinks h2 {
+  margin: 0 0 10px 10px;
+  color: #85838c;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.quickLinks a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  color: #4c4a52;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.quickLinks a span:nth-child(2) {
+  flex: 1;
+}
+
+.quickLinks a:hover,
+.navLink:hover {
+  color: #302058;
+}
+
+.sidebarBottom {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  padding: 14px 5px 0;
+  border-top: 1px solid var(--line);
+}
+
+.avatar {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  place-items: center;
+  border-radius: 50%;
+  background: #eee9f8;
+  color: #39266a;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.accountName {
+  overflow: hidden;
+  color: #514f58;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mainColumn {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+.topbar {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  display: flex;
+  min-height: 76px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 14px clamp(22px, 4vw, 56px);
+  border-bottom: 1px solid var(--line);
+  background: rgb(255 255 255 / 94%);
+  backdrop-filter: blur(12px);
+}
+
+.searchForm {
+  display: flex;
+  width: min(100%, 560px);
+  min-height: 44px;
+  align-items: center;
+  gap: 10px;
+  padding: 0 13px;
+  border: 1px solid #e6e5e9;
+  border-radius: 10px;
+  background: #fafafd;
+  color: #77747e;
+}
+
+.searchForm > span {
+  font-size: 25px;
+  line-height: 1;
+}
+
+.searchForm input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+}
+
+.searchForm input::placeholder {
+  color: #9997a0;
+}
+
+.searchForm button {
+  border: 0;
+  background: none;
+  color: #77747e;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.logoutButton {
+  flex: 0 0 auto;
+  padding: 10px 15px;
+  border: 1px solid #e8e7eb;
+  border-radius: 8px;
+  background: white;
+  color: #4a4850;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.logoutButton:hover {
+  background: #f7f6f9;
+}
+
+.logoutError {
+  margin: 12px clamp(22px, 4vw, 56px) 0;
+  color: #b42318;
+  font-size: 13px;
+}
+
+.pageContent {
+  width: 100%;
+  max-width: 1500px;
+  flex: 1;
+  margin: 0 auto;
+  padding: 38px clamp(22px, 4vw, 56px) 56px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  gap: clamp(24px, 7vw, 100px);
+  padding: 22px;
+  border-top: 1px solid var(--line);
+  background: white;
+}
+
+.footer a {
+  color: #77747e;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #302058;
+}
+
+@media (max-width: 760px) {
+  .sidebar {
+    flex-basis: 70px;
+    align-items: center;
+    padding: 18px 8px;
+  }
+
+  .brand {
+    margin: 0 0 25px;
+  }
+
+  .brand > span:last-child,
+  .navLink > span:last-child,
+  .quickLinks,
+  .sidebarDivider,
+  .accountName {
+    display: none;
+  }
+
+  .primaryNav {
+    width: 100%;
+  }
+
+  .navLink {
+    justify-content: center;
+    padding: 0;
+    font-size: 20px;
+  }
+
+  .sidebarBottom {
+    padding: 14px 0 0;
+  }
+
+  .topbar {
+    min-height: 66px;
+    gap: 10px;
+    padding-inline: 14px;
+  }
+
+  .logoutButton {
+    padding: 9px 10px;
+    font-size: 11px;
+  }
+
+  .pageContent {
+    padding: 28px 18px 40px;
+  }
+
+  .footer {
+    flex-wrap: wrap;
+    gap: 12px 24px;
+  }
+}
+
+@media (max-width: 430px) {
+  .sidebar {
+    flex-basis: 56px;
+    padding-inline: 5px;
+  }
+
+  .brandMark {
+    width: 29px;
+    height: 29px;
+  }
+
+  .searchForm {
+    min-height: 40px;
+    gap: 6px;
+    padding-inline: 9px;
+  }
+
+  .searchForm input {
+    font-size: 12px;
+  }
+}
