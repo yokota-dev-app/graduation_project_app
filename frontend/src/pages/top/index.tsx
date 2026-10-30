@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "../../styles/top.module.css";
 
 function TopView() {
@@ -21,10 +22,10 @@ function TopView() {
               変数や出力例と一緒に保存して、必要なときにすぐ使えます。
             </p>
             <div className={styles.topHeroActions}>
-              <a className={`${styles.topButton} ${styles.topButtonPrimary}`} href="/signup">
+              <Link className={`${styles.topButton} ${styles.topButtonPrimary}`} to="/signup">
                 無料で使い始める
                 <span aria-hidden="true">→</span>
-              </a>
+              </Link>
               <a className={styles.topTextLink} href="#features">
                 機能を見る <span aria-hidden="true">↓</span>
               </a>
@@ -94,7 +95,7 @@ function TopView() {
           <span className={styles.topSectionKicker}>LESS SEARCHING, MORE CREATING</span>
           <h2>探す時間を減らして、<br />いい仕事に集中しよう。</h2>
           <p>あなたのプロンプトを、頼れる仕事道具に。</p>
-          <a className={`${styles.topButton} ${styles.topButtonPrimary}`} href="/signup">無料で使い始める <span aria-hidden="true">→</span></a>
+          <Link className={`${styles.topButton} ${styles.topButtonPrimary}`} to="/signup">無料で使い始める <span aria-hidden="true">→</span></Link>
         </section>
       </main>
     </div>
