@@ -1,4 +1,4 @@
-import { Navigate, Outlet, Route, Routes } from 'react-router-dom'
+import { Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom'
 import './App.css'
 import TopPage from './pages/top'
 import Header from './shared/components/Header'
@@ -8,6 +8,7 @@ import SignupPage from './pages/auth/SignupPage'
 import DashboardLayout from './layouts/DashboardLayout'
 import MyPage from './pages/mypage/MyPage'
 import DashboardPlaceholder from './pages/mypage/DashboardPlaceholder'
+import { useAuth } from './features/auth/useAuth'
 
 function PublicLayout() {
   return (
@@ -19,6 +20,21 @@ function PublicLayout() {
   )
 }
 
+function RequireAuth() {
+  const { isLoggedIn, loading } = useAuth()
+  const location = useLocation()
+
+  if (loading) {
+    return <p role="status">ログイン状態を確認中...</p>
+  }
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace state={{ from: location }} />
+  }
+
+  return <Outlet />
+}
+
 function App() {
   return (
     <Routes>
@@ -27,10 +43,12 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
       </Route>
-      <Route path="/mypage" element={<DashboardLayout />}>
-        <Route index element={<MyPage />} />
-        <Route path="create" element={<DashboardPlaceholder title="プロンプト作成" />} />
-        <Route path="settings" element={<DashboardPlaceholder title="設定" />} />
+      <Route element={<RequireAuth />}>
+        <Route path="/mypage" element={<DashboardLayout />}>
+          <Route index element={<MyPage />} />
+          <Route path="create" element={<DashboardPlaceholder title="プロンプト作成" />} />
+          <Route path="settings" element={<DashboardPlaceholder title="設定" />} />
+        </Route>
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
