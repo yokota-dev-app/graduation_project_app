@@ -129,6 +129,22 @@
   gap: 10px;
 }
 
+.account-name {
+  color: #4c4a5b;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.logout-error {
+  margin: 0;
+  padding: 8px 20px;
+  color: #b42318;
+  background: #fff5f4;
+  font-size: 13px;
+  text-align: center;
+}
+
 .top-button {
   display: inline-flex;
   align-items: center;
