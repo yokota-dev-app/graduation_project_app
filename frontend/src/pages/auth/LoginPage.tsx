@@ -2,8 +2,8 @@ import { useState } from 'react';
 import type { FormEvent } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import { login } from '../../api/auth';
-import { useAuth } from '../../context/useAuth';
+import { login } from '../../features/auth/api';
+import { useAuth } from '../../features/auth/useAuth';
 import styles from './auth.module.css';
 
 export default function LoginPage() {
