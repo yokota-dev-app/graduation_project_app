@@ -33,7 +33,7 @@ export default function SignupPage() {
         password_confirmation: passwordConfirmation,
       });
       loginUser(response.user);
-      navigate('/', { replace: true });
+      navigate('/mypage', { replace: true });
     } catch (requestError: unknown) {
       if (axios.isAxiosError<{ errors?: string[] }>(requestError)) {
         const messages = requestError.response?.data?.errors;
