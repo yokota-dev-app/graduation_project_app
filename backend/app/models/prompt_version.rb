@@ -1,0 +1,2 @@
+class PromptVersion < ApplicationRecord
+end
