@@ -104,7 +104,9 @@ export default function PromptCard({ prompt }: PromptCardProps) {
         <h3>プロンプト内容</h3>
         <span>{prompt.content.length} 文字</span>
       </div>
-      <pre className={styles.promptContent}>{prompt.content}</pre>
+      <div className={styles.promptContent}>
+        <pre className={styles.promptText}>{prompt.content}</pre>
+      </div>
       {copyError && <p className={styles.copyError} role="alert">コピーできませんでした。</p>}
       <footer className={styles.cardFooter}>
         <span>{prompt.author}</span>

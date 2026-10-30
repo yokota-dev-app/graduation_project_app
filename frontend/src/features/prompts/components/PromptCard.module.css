@@ -171,22 +171,27 @@
 }
 
 .promptContent {
-  display: -webkit-box;
   min-height: 126px;
-  overflow: hidden;
-  margin: 0;
   padding: 13px;
   border: 1px solid #f0eef3;
   border-radius: 9px;
   background: #faf9fc;
+}
+
+.promptText {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0;
   color: #65616c;
   font: inherit;
   font-size: 11px;
   line-height: 1.7;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+  text-overflow: ellipsis;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 5;
+  line-clamp: 5;
 }
 
 .copyError {
