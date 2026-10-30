@@ -19,7 +19,7 @@ export default function DashboardLayout() {
     setLogoutError('');
     try {
       await logoutUser();
-      navigate('/login');
+      navigate('/', { replace: true });
     } catch {
       setLogoutError('ログアウトに失敗しました。時間をおいて再度お試しください。');
     }

@@ -36,13 +36,29 @@ function RequireAuth() {
   return <Outlet />
 }
 
+function RedirectIfLoggedIn() {
+  const { isLoggedIn, loading } = useAuth()
+
+  if (loading) {
+    return <p role="status">ログイン状態を確認中...</p>
+  }
+
+  if (isLoggedIn) {
+    return <Navigate to="/mypage" replace />
+  }
+
+  return <Outlet />
+}
+
 function App() {
   return (
     <Routes>
-      <Route element={<PublicLayout />}>
-        <Route path="/" element={<TopPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
+      <Route element={<RedirectIfLoggedIn />}>
+        <Route element={<PublicLayout />}>
+          <Route path="/" element={<TopPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+        </Route>
       </Route>
       <Route element={<RequireAuth />}>
         <Route path="/mypage" element={<DashboardLayout />}>

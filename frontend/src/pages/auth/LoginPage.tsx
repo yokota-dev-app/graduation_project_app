@@ -15,7 +15,7 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const redirectPath = (location.state as { from?: { pathname?: string } } | null)
-    ?.from?.pathname ?? '/';
+    ?.from?.pathname ?? '/mypage';
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
