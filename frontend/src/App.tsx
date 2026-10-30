@@ -7,6 +7,7 @@ import LoginPage from './pages/auth/LoginPage'
 import SignupPage from './pages/auth/SignupPage'
 import DashboardLayout from './layouts/DashboardLayout'
 import MyPage from './pages/mypage/MyPage'
+import PromptCreatePage from './pages/mypage/PromptCreatePage'
 import DashboardPlaceholder from './pages/mypage/DashboardPlaceholder'
 import { useAuth } from './features/auth/useAuth'
 
@@ -46,7 +47,7 @@ function App() {
       <Route element={<RequireAuth />}>
         <Route path="/mypage" element={<DashboardLayout />}>
           <Route index element={<MyPage />} />
-          <Route path="create" element={<DashboardPlaceholder title="プロンプト作成" />} />
+          <Route path="create" element={<PromptCreatePage />} />
           <Route path="settings" element={<DashboardPlaceholder title="設定" />} />
         </Route>
       </Route>
