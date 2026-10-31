@@ -16,6 +16,14 @@ interface PromptFormProps {
 const VARIABLE_PATTERN = /\{\{\s*([^{}\s]+)\s*\}\}/g;
 const fieldClasses = 'grid gap-1.5 text-[#45424d] text-sm font-bold [&_input]:h-10 [&_input]:rounded-lg [&_input]:border [&_input]:border-solid [&_input]:border-[#b9b4c7] [&_input]:bg-white [&_input]:px-3 [&_input]:py-0 [&_input]:text-[#28252f] [&_input]:text-sm [&_input]:font-normal [&_input]:[box-shadow:0_1px_2px_rgb(36_28_55/8%)] [&_textarea]:rounded-lg [&_textarea]:border [&_textarea]:border-solid [&_textarea]:border-[#b9b4c7] [&_textarea]:bg-white [&_textarea]:text-[#28252f] [&_textarea]:[box-shadow:0_1px_2px_rgb(36_28_55/8%)] [&_textarea]:[font-family:inherit] [&_textarea]:text-sm [&_textarea]:font-normal [&_textarea]:leading-relaxed [&_select]:h-10 [&_select]:rounded-lg [&_select]:border [&_select]:border-solid [&_select]:border-[#b9b4c7] [&_select]:bg-white [&_select]:px-3 [&_select]:py-0 [&_select]:text-[#28252f] [&_select]:[box-shadow:0_1px_2px_rgb(36_28_55/8%)] [&_select]:[font-family:inherit] [&_select]:text-sm [&_select]:font-normal [&_input:focus]:border-[#5b46a0] [&_input:focus]:[box-shadow:0_0_0_3px_rgb(91_70_160/18%)] [&_input:focus]:[outline:none] [&_textarea:focus]:border-[#5b46a0] [&_textarea:focus]:[box-shadow:0_0_0_3px_rgb(91_70_160/18%)] [&_textarea:focus]:[outline:none] [&_select:focus]:border-[#5b46a0] [&_select:focus]:[box-shadow:0_0_0_3px_rgb(91_70_160/18%)] [&_select:focus]:[outline:none]';
 const variableFieldClasses = 'grid gap-1 [&_code]:text-[#493b68] [&_code]:text-sm [&_input]:h-9 [&_input]:rounded-md [&_input]:border [&_input]:border-solid [&_input]:border-[#b9b4c7] [&_input]:bg-white [&_input]:px-2.5 [&_input]:py-0 [&_input]:text-sm [&_input]:font-normal [&_input:focus]:border-[#5b46a0] [&_input:focus]:[box-shadow:0_0_0_3px_rgb(91_70_160/18%)] [&_input:focus]:[outline:none]';
+function RequiredBadge() {
+  return (
+    <span className="ml-2 rounded-sm bg-[#fdecea] px-1.5 py-0.5 align-middle text-xs font-bold text-[#b42318]">
+      必須
+    </span>
+  );
+}
+
 const actionButtonClasses = 'h-10 min-w-24 rounded-lg border-0 text-sm cursor-pointer';
 
 function extractVariables(content: string): string[] {
@@ -81,6 +89,10 @@ export default function PromptForm({
   return (
     <form className="mx-auto grid w-full max-w-6xl gap-4" onSubmit={handleSubmit}>
       <h1 className="m-0 text-[#28252f] text-3xl">{heading}</h1>
+      <p className="m-0 text-sm text-[#66616f]">
+        <span className="mr-1 rounded-sm bg-[#fdecea] px-1.5 py-0.5 text-xs font-bold text-[#b42318]">必須</span>
+        は入力が必要な項目です
+      </p>
 
       {errors.length > 0 && (
         <ul className="m-0 rounded-lg border border-solid border-[#f3c7c2] bg-[#fff3f1] py-2.5 pr-3.5 pl-8 text-[#b42318] text-sm" role="alert">
@@ -91,8 +103,11 @@ export default function PromptForm({
       )}
 
       <label className={fieldClasses}>
-        <span>タイトル</span>
-        <input value={title} onChange={(event) => setTitle(event.target.value)} maxLength={255} />
+        <span>
+          タイトル
+          <RequiredBadge />
+        </span>
+        <input aria-required="true" value={title} onChange={(event) => setTitle(event.target.value)} maxLength={255} />
       </label>
 
       <label className={fieldClasses}>
@@ -107,8 +122,12 @@ export default function PromptForm({
       <div className="grid grid-cols-1 gap-4 md:grid-cols-[minmax(0,1fr)_15rem]">
         <div className="grid gap-4">
           <label className={fieldClasses}>
-            <span>プロンプト内容</span>
+            <span>
+              プロンプト内容
+              <RequiredBadge />
+            </span>
             <textarea
+              aria-required="true"
               className="min-h-64 resize-y p-3 leading-relaxed"
               value={content}
               onChange={(event) => setContent(event.target.value)}
