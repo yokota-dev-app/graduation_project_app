@@ -25,7 +25,17 @@ export default function PromptCard({ prompt, onDeleted }: PromptCardProps) {
       }}
     >
       <div className="flex items-start justify-between gap-3 [&_h2]:m-0 [&_h2]:overflow-hidden [&_h2]:text-[#26232d] [&_h2]:text-base [&_h2]:font-bold [&_h2]:leading-snug [&_h2]:text-ellipsis">
-        <h2>{prompt.title}</h2>
+        <div className="group relative min-w-0">
+          <h2>{prompt.title}</h2>
+          {prompt.summary && (
+            <p
+              className="pointer-events-none absolute left-0 top-full z-10 mt-1 hidden w-64 max-w-[80vw] rounded-lg bg-[#292633] px-3 py-2 text-xs leading-relaxed text-white [box-shadow:0_6px_18px_rgb(36_28_55/20%)] group-hover:block"
+              role="tooltip"
+            >
+              {prompt.summary}
+            </p>
+          )}
+        </div>
         <PromptActions
           promptId={prompt.id}
           title={prompt.title}
@@ -35,8 +45,7 @@ export default function PromptCard({ prompt, onDeleted }: PromptCardProps) {
           onDeleted={() => onDeleted?.(prompt.id)}
         />
       </div>
-      <p className="my-2.5 mb-4 min-h-10 text-[#77747e] text-xs leading-relaxed">{prompt.summary}</p>
-      <div className="mb-2 flex items-baseline justify-between gap-2 [&_h3]:m-0 [&_h3]:text-[#45424d] [&_h3]:text-xs [&_h3]:font-bold [&_span]:text-[#a09da6] [&_span]:text-xs">
+      <div className="mb-2 mt-4 flex items-baseline justify-between gap-2 [&_h3]:m-0 [&_h3]:text-[#45424d] [&_h3]:text-xs [&_h3]:font-bold [&_span]:text-[#a09da6] [&_span]:text-xs">
         <h3>プロンプト内容</h3>
         <span>{prompt.content.length} 文字</span>
       </div>

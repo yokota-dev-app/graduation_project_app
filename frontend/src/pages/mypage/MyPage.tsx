@@ -43,9 +43,16 @@ export default function MyPage() {
       <div className="mb-7 flex items-stretch justify-between gap-4 sm:items-start [&_h1]:m-0 [&_h1]:text-3xl [&_h1]:font-extrabold [&_h1]:tracking-tight [&_h1]:text-[#28252f]">
         <div>
           <p className="mb-2 mt-0 text-xs font-bold tracking-widest text-[#7d6aab]">YOUR WORKSPACE</p>
-          <h1 id="mypage-title">マイプロンプト</h1>
+          <div className="flex flex-wrap items-center gap-3">
+            <h1 id="mypage-title">マイプロンプト</h1>
+            {!loading && !error && (
+              <span className="whitespace-nowrap rounded-full border border-solid border-[#e9e6ef] bg-white px-3 py-2 text-xs text-[#66616f]">
+                {filteredPrompts.length} 件
+              </span>
+            )}
+          </div>
         </div>
-        <div className="flex min-h-28 flex-[0_0_auto] flex-col items-end justify-between gap-2.5 self-stretch">
+        <div className="flex flex-[0_0_auto] items-start">
           <Link
             className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-solid border-[#34265b] bg-[#34265b] px-4 text-sm font-bold text-white transition-all duration-150 ease-in hover:-translate-y-0.5 hover:bg-[#463675] [&>span]:text-lg [&>span]:leading-none"
             to="/mypage/create"
@@ -53,11 +60,6 @@ export default function MyPage() {
             <span aria-hidden="true">＋</span>
             プロンプト作成
           </Link>
-          {!loading && !error && (
-            <span className="whitespace-nowrap rounded-full border border-solid border-[#e9e6ef] bg-white px-3 py-2 text-xs text-[#66616f]">
-              {filteredPrompts.length} 件
-            </span>
-          )}
         </div>
       </div>
 
