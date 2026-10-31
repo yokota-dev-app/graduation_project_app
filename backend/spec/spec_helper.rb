@@ -2,9 +2,9 @@
 require "simplecov"
 SimpleCov.start "rails" do
   enable_coverage :branch
-  add_filter %w[/spec/ /config/ /db/]
-  add_group "Controllers", "app/controllers"
-  add_group "Models", "app/models"
+  skip %w[/spec/ /config/ /db/]
+  group "Controllers", "app/controllers"
+  group "Models", "app/models"
 end
 
 RSpec.configure do |config|
