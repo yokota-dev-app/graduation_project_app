@@ -8,6 +8,7 @@ interface PromptResponse {
   content: string;
   author: string;
   updated_at: string;
+  variable_settings: Record<string, string> | null;
 }
 
 function formatDate(value: string): string {
@@ -19,11 +20,10 @@ function formatDate(value: string): string {
 
 export interface PromptDetail extends Prompt {
   isPublic: boolean;
-  variableSettings: Record<string, string>;
 }
 
 export async function getPrompt(id: string): Promise<PromptDetail> {
-  const { data } = await apiClient.get<PromptResponse & { is_public: boolean; variable_settings: Record<string, string> }>(
+  const { data } = await apiClient.get<PromptResponse & { is_public: boolean }>(
     `/prompts/${id}`,
   );
   return {
@@ -34,7 +34,7 @@ export async function getPrompt(id: string): Promise<PromptDetail> {
     author: data.author,
     updatedAt: formatDate(data.updated_at),
     isPublic: data.is_public,
-    variableSettings: data.variable_settings,
+    variableSettings: data.variable_settings ?? {},
   };
 }
 
@@ -47,6 +47,7 @@ export async function getMyPrompts(): Promise<Prompt[]> {
     content: item.content,
     author: item.author,
     updatedAt: formatDate(item.updated_at),
+    variableSettings: item.variable_settings ?? {},
   }));
 }
 

@@ -6,10 +6,10 @@ interface DashboardPlaceholderProps {
 
 export default function DashboardPlaceholder({ title }: DashboardPlaceholderProps) {
   return (
-    <section className="grid min-h-[320px] content-center justify-items-center p-[32px] border border-dashed border-[#dedbe4] rounded-[13px] bg-[rgb(255_255_255/75%)] text-center [&_h1]:m-0 [&_h1]:text-[#28252f] [&_h1]:text-[26px] [&_a]:py-[9px] [&_a]:px-[14px] [&_a]:border [&_a]:border-solid [&_a]:border-[#e8e5ee] [&_a]:rounded-[8px] [&_a]:text-[#493b68] [&_a]:text-[12px] [&_a:hover]:bg-[#f3f0f8]">
-      <p className="mt-0 mx-0 mb-[8px] text-[#7d6aab] text-[10px] font-[750] tracking-[0.12em]">WORKSPACE</p>
+    <section className="grid min-h-80 content-center justify-items-center rounded-xl border border-dashed border-[#dedbe4] bg-[rgb(255_255_255/75%)] p-8 text-center [&_h1]:m-0 [&_h1]:text-2xl [&_h1]:text-[#28252f] [&_a]:rounded-lg [&_a]:border [&_a]:border-solid [&_a]:border-[#e8e5ee] [&_a]:px-3.5 [&_a]:py-2 [&_a]:text-xs [&_a]:text-[#493b68] [&_a:hover]:bg-[#f3f0f8]">
+      <p className="mb-2 mt-0 text-xs font-bold tracking-widest text-[#7d6aab]">WORKSPACE</p>
       <h1>{title}</h1>
-      <p className="mt-[12px] mx-0 mb-[20px] text-[#85828c] text-[13px]">この機能は現在準備中です。</p>
+      <p className="mb-5 mt-3 text-sm text-[#85828c]">この機能は現在準備中です。</p>
       <Link to="/mypage">マイプロンプトに戻る</Link>
     </section>
   );

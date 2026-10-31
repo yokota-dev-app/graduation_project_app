@@ -1,16 +1,16 @@
-import { Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom'
-import TopPage from './pages/top'
-import Header from './shared/components/Header'
-import Footer from './shared/components/Footer'
-import LoginPage from './pages/auth/LoginPage'
-import SignupPage from './pages/auth/SignupPage'
-import DashboardLayout from './layouts/DashboardLayout'
-import MyPage from './pages/mypage/MyPage'
-import PromptCreatePage from './pages/mypage/PromptCreatePage'
-import PromptEditPage from './pages/mypage/PromptEditPage'
-import PromptDetailPage from './pages/mypage/PromptDetailPage'
-import DashboardPlaceholder from './pages/mypage/DashboardPlaceholder'
-import { useAuth } from './features/auth/useAuth'
+import { Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom';
+import { useAuth } from './features/auth/useAuth';
+import DashboardLayout from './layouts/DashboardLayout';
+import LoginPage from './pages/auth/LoginPage';
+import SignupPage from './pages/auth/SignupPage';
+import DashboardPlaceholder from './pages/mypage/DashboardPlaceholder';
+import MyPage from './pages/mypage/MyPage';
+import PromptCreatePage from './pages/mypage/PromptCreatePage';
+import PromptDetailPage from './pages/mypage/PromptDetailPage';
+import PromptEditPage from './pages/mypage/PromptEditPage';
+import TopPage from './pages/top';
+import Footer from './shared/components/Footer';
+import Header from './shared/components/Header';
 
 function PublicLayout() {
   return (
@@ -21,36 +21,36 @@ function PublicLayout() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }
 
 function RequireAuth() {
-  const { isLoggedIn, loading } = useAuth()
-  const location = useLocation()
+  const { isLoggedIn, loading } = useAuth();
+  const location = useLocation();
 
   if (loading) {
-    return <p role="status">ログイン状態を確認中...</p>
+    return <p role="status">ログイン状態を確認中...</p>;
   }
 
   if (!isLoggedIn) {
-    return <Navigate to="/login" replace state={{ from: location }} />
+    return <Navigate to="/login" replace state={{ from: location }} />;
   }
 
-  return <Outlet />
+  return <Outlet />;
 }
 
 function RedirectIfLoggedIn() {
-  const { isLoggedIn, loading } = useAuth()
+  const { isLoggedIn, loading } = useAuth();
 
   if (loading) {
-    return <p role="status">ログイン状態を確認中...</p>
+    return <p role="status">ログイン状態を確認中...</p>;
   }
 
   if (isLoggedIn) {
-    return <Navigate to="/mypage" replace />
+    return <Navigate to="/mypage" replace />;
   }
 
-  return <Outlet />
+  return <Outlet />;
 }
 
 function App() {
@@ -74,6 +74,7 @@ function App() {
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
-  )
+  );
 }
-export default App
+
+export default App;
