@@ -42,13 +42,6 @@ export default function DashboardLayout() {
           <NavLink
             className={({ isActive }) => `${styles.navLink} ${isActive ? styles.activeNavLink : ''}`}
             end
-            to="/"
-          >
-            ⌂ <span>ホーム</span>
-          </NavLink>
-          <NavLink
-            className={({ isActive }) => `${styles.navLink} ${isActive ? styles.activeNavLink : ''}`}
-            end
             to="/mypage"
           >
             ▤ <span>マイプロンプト</span>
@@ -105,9 +98,11 @@ export default function DashboardLayout() {
         </header>
 
         {logoutError && <p className={styles.logoutError} role="alert">{logoutError}</p>}
-        <main className={styles.pageContent}>
-          <Outlet context={searchQuery} />
-        </main>
+        <div className={styles.scrollArea}>
+          <main className={styles.pageContent}>
+            <Outlet context={searchQuery} />
+          </main>
+        </div>
         <Footer />
       </div>
     </div>

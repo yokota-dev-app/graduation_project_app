@@ -1,1 +1,15 @@
-/* empty */
+.public-layout {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.public-main {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+}
+
+.public-main > * {
+  flex: 1 0 auto;
+}

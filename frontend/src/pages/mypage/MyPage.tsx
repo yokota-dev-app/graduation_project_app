@@ -45,7 +45,6 @@ export default function MyPage() {
         <div>
           <p className={styles.eyebrow}>YOUR WORKSPACE</p>
           <h1 id="mypage-title">マイプロンプト</h1>
-          <p className={styles.description}>保存したプロンプトを一覧で確認できます。</p>
         </div>
         <div className={styles.headingActions}>
           <Link className={styles.createPromptButton} to="/mypage/create">
