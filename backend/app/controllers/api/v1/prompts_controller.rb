@@ -62,6 +62,15 @@ module Api
         end
       end
 
+      # プロンプト削除（バージョンも一緒に削除）
+      def destroy
+        prompt = current_user.prompts.find_by(id: params[:id])
+        return render json: { errors: ['プロンプトが見つかりません'] }, status: :not_found unless prompt
+
+        prompt.destroy!
+        head :no_content
+      end
+
       private
 
       def prompt_json(prompt)

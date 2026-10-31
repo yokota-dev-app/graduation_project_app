@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
+import { deletePrompt } from '../api';
 import styles from './PromptActions.module.css';
 
 interface PromptActionsProps {
@@ -8,13 +10,47 @@ interface PromptActionsProps {
   content: string;
   onMenuOpenChange?: (open: boolean) => void;
   onCopyError?: (failed: boolean) => void;
+  onDeleted?: () => void;
 }
 
-export default function PromptActions({ promptId, title, content, onMenuOpenChange, onCopyError }: PromptActionsProps) {
+export default function PromptActions({ promptId, title, content, onMenuOpenChange, onCopyError, onDeleted }: PromptActionsProps) {
   const [copied, setCopied] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const [confirmOpen, setConfirmOpen] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState('');
+
+  const closeConfirm = () => {
+    if (deleting) return;
+    setConfirmOpen(false);
+    setDeleteError('');
+  };
+
+  useEffect(() => {
+    if (!confirmOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') closeConfirm();
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  });
+
+  const confirmDelete = async () => {
+    setDeleting(true);
+    setDeleteError('');
+    try {
+      await deletePrompt(promptId);
+      setConfirmOpen(false);
+      onDeleted?.();
+    } catch {
+      setDeleteError('削除できませんでした。');
+    } finally {
+      setDeleting(false);
+    }
+  };
 
   useEffect(() => {
     onMenuOpenChange?.(menuOpen);
@@ -104,13 +140,40 @@ export default function PromptActions({ promptId, title, content, onMenuOpenChan
               className={styles.deleteAction}
               type="button"
               role="menuitem"
-              onClick={() => setMenuOpen(false)}
+              onClick={() => {
+                setMenuOpen(false);
+                setConfirmOpen(true);
+              }}
             >
               削除
             </button>
           </div>
         )}
       </div>
+      {confirmOpen &&
+        createPortal(
+          <div className={styles.overlay} onClick={closeConfirm}>
+            <div
+              className={styles.dialog}
+              role="alertdialog"
+              aria-modal="true"
+              aria-labelledby="delete-dialog-title"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <p id="delete-dialog-title">プロンプトを削除してよろしいですか？</p>
+              {deleteError && <p className={styles.dialogError} role="alert">{deleteError}</p>}
+              <div className={styles.dialogActions}>
+                <button type="button" className={styles.dialogCancel} autoFocus onClick={closeConfirm}>
+                  キャンセル
+                </button>
+                <button type="button" className={styles.dialogOk} disabled={deleting} onClick={confirmDelete}>
+                  OK
+                </button>
+              </div>
+            </div>
+          </div>,
+          document.body,
+        )}
     </div>
   );
 }
