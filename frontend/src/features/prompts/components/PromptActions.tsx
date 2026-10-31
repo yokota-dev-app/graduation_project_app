@@ -13,8 +13,8 @@ interface PromptActionsProps {
 }
 
 const iconButtonClasses = 'grid h-8 w-8 place-items-center rounded-lg border border-solid border-[#e9e7ed] bg-white text-[#696572] hover:border-[#c9c0dc] hover:text-[#382569] [&_svg]:fill-none [&_svg]:stroke-current [&_svg]:[stroke-linecap:round] [&_svg]:[stroke-linejoin:round] [&_svg]:stroke-2 cursor-pointer';
-const menuItemClasses = 'rounded-md border-0 bg-transparent px-2.5 py-2 text-left text-[#45424d] text-xs [font-family:inherit] hover:bg-[#f5f3f8] focus-visible:bg-[#f5f3f8] focus-visible:[outline:none] cursor-pointer';
-const dialogButtonClasses = 'h-10 min-w-22 rounded-lg border-0 text-xs cursor-pointer';
+const menuItemClasses = 'rounded-md border-0 bg-transparent px-2.5 py-2 text-left text-[#45424d] text-sm [font-family:inherit] hover:bg-[#f5f3f8] focus-visible:bg-[#f5f3f8] focus-visible:[outline:none] cursor-pointer';
+const dialogButtonClasses = 'h-10 min-w-22 rounded-lg border-0 text-sm cursor-pointer';
 
 export default function PromptActions({ promptId, title, content, onMenuOpenChange, onCopyError, onDeleted }: PromptActionsProps) {
   const [copied, setCopied] = useState(false);
@@ -172,8 +172,8 @@ export default function PromptActions({ promptId, title, content, onMenuOpenChan
               aria-labelledby="delete-dialog-title"
               onClick={(event) => event.stopPropagation()}
             >
-              <p className="m-0 text-base font-bold leading-relaxed" id="delete-dialog-title">プロンプトを削除してよろしいですか？</p>
-              {deleteError && <p className="m-0 mt-2 text-[#b42318] text-xs font-normal" role="alert">{deleteError}</p>}
+              <p className="m-0 text-lg font-bold leading-relaxed" id="delete-dialog-title">プロンプトを削除してよろしいですか？</p>
+              {deleteError && <p className="m-0 mt-2 text-[#b42318] text-sm font-normal" role="alert">{deleteError}</p>}
               <div className="mt-5 flex justify-end gap-2.5">
                 <button type="button" className={`${dialogButtonClasses} bg-[#ececf0] text-[#45424d]`} autoFocus onClick={closeConfirm}>
                   キャンセル
