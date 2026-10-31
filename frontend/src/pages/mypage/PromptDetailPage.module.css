@@ -10,6 +10,13 @@
   font-size: 24px;
 }
 
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
 .page h2 {
   margin: 8px 0 0;
   color: #45424d;

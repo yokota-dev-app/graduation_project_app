@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { getPrompt } from '../../features/prompts/api';
 import type { PromptDetail } from '../../features/prompts/api';
+import PromptActions from '../../features/prompts/components/PromptActions';
 import styles from './PromptDetailPage.module.css';
 
 const VARIABLE_SPLIT_PATTERN = /\{\{\s*([^{}\s]+)\s*\}\}/;
@@ -17,6 +18,7 @@ export default function PromptDetailPage() {
 
 function PromptDetail({ id }: { id: string }) {
   const [showRaw, setShowRaw] = useState(false);
+  const [copyFailed, setCopyFailed] = useState(false);
   const [inputs, setInputs] = useState<Record<string, string>>({});
   const [prompt, setPrompt] = useState<PromptDetail | null>(null);
   const [error, setError] = useState('');
@@ -50,11 +52,22 @@ function PromptDetail({ id }: { id: string }) {
   const variableNames = extractVariables(prompt.content);
   const valueOf = (name: string) => inputs[name] ?? prompt.variableSettings[name] ?? '';
   const parts = prompt.content.split(VARIABLE_SPLIT_PATTERN);
+  const appliedContent = parts
+    .map((part, index) => (index % 2 === 1 ? valueOf(part) || `{{${part}}}` : part))
+    .join('');
 
   return (
     <section className={styles.page}>
       <Link className={styles.back} to="/mypage">← マイプロンプトに戻る</Link>
-      <h1>{prompt.title}</h1>
+      <div className={styles.titleRow}>
+        <h1>{prompt.title}</h1>
+        <PromptActions
+          title={prompt.title}
+          content={showRaw ? prompt.content : appliedContent}
+          onCopyError={setCopyFailed}
+        />
+      </div>
+      {copyFailed && <p className={styles.error} role="alert">コピーできませんでした。</p>}
       <p className={styles.meta}>
         {prompt.isPublic ? '公開' : '非公開'} ・ {prompt.author} ・ 更新日 {prompt.updatedAt}
       </p>
