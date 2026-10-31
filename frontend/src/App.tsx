@@ -14,11 +14,13 @@ import { useAuth } from './features/auth/useAuth'
 
 function PublicLayout() {
   return (
-    <>
+    <div className="public-layout">
       <Header />
-      <Outlet />
+      <main className="public-main">
+        <Outlet />
+      </main>
       <Footer />
-    </>
+    </div>
   )
 }
 

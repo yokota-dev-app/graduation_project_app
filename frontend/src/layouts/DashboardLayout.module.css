@@ -4,7 +4,8 @@
   --line: #e9e8ec;
   --surface: #ffffff;
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
   color: var(--ink);
   background: #f8f8fa;
   font-family: Inter, "Noto Sans JP", system-ui, sans-serif;
@@ -20,7 +21,9 @@
   display: flex;
   flex: 0 0 248px;
   flex-direction: column;
-  min-height: 100vh;
+  align-self: flex-start;
+  height: 100vh;
+  overflow-y: auto;
   padding: 28px 18px 20px;
   border-right: 1px solid var(--line);
   background: var(--surface);
@@ -158,8 +161,16 @@
 .mainColumn {
   display: flex;
   min-width: 0;
+  min-height: 0;
   flex: 1;
   flex-direction: column;
+}
+
+.scrollArea {
+  min-height: 0;
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
 }
 
 .topbar {

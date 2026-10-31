@@ -1,7 +1,9 @@
 .page {
   display: grid;
   gap: 12px;
+  width: 100%;
   max-width: 860px;
+  margin: 0 auto;
   color: #28252f;
 }
 
@@ -44,9 +46,10 @@
 .content {
   margin: 0;
   padding: 16px;
-  border: 1px solid #e7e5ee;
+  border: 1px solid #b9b4c7;
   border-radius: 9px;
-  background: #faf9fc;
+  background: #f3f1f8;
+  color: #28252f;
   font: inherit;
   font-size: 13px;
   line-height: 1.8;
@@ -64,7 +67,7 @@
 .rawToggle {
   height: 30px;
   padding: 0 12px;
-  border: 1px solid #e7e5ee;
+  border: 1px solid #b9b4c7;
   border-radius: 8px;
   background: #fff;
   color: #493b68;
@@ -119,21 +122,24 @@
 
 .variable code {
   color: #493b68;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .variable input {
   height: 38px;
   padding: 0 12px;
-  border: 1px solid #e7e5ee;
+  border: 1px solid #b9b4c7;
   border-radius: 8px;
-  background: #faf9fc;
+  background: #fff;
+  box-shadow: 0 1px 2px rgb(36 28 55 / 8%);
+  color: #28252f;
   font: inherit;
   font-size: 13px;
 }
 
 .variable input:focus {
-  border-color: #7d6aab;
+  border-color: #5b46a0;
+  box-shadow: 0 0 0 3px rgb(91 70 160 / 18%);
   outline: none;
 }
 

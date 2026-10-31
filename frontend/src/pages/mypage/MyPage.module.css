@@ -17,6 +17,8 @@
   align-self: stretch;
   justify-content: space-between;
   align-items: flex-end;
+  gap: 10px;
+  min-height: 104px;
 }
 
 .createPromptButton {
