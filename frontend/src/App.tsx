@@ -1,5 +1,4 @@
 import { Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom'
-import './App.css'
 import TopPage from './pages/top'
 import Header from './shared/components/Header'
 import Footer from './shared/components/Footer'
@@ -15,9 +14,9 @@ import { useAuth } from './features/auth/useAuth'
 
 function PublicLayout() {
   return (
-    <div className="public-layout">
+    <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="public-main">
+      <main className="flex flex-[1_0_auto] flex-col [&>*]:flex-[1_0_auto]">
         <Outlet />
       </main>
       <Footer />

@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { deletePrompt } from '../api';
-import styles from './PromptActions.module.css';
 
 interface PromptActionsProps {
   promptId: number;
@@ -89,9 +88,9 @@ export default function PromptActions({ promptId, title, content, onMenuOpenChan
   };
 
   return (
-    <div className={styles.cardActions} onClick={(event) => event.stopPropagation()}>
+    <div className="flex flex-[0_0_auto] items-center gap-[4px]" onClick={(event) => event.stopPropagation()}>
       <button
-        className={styles.copyButton}
+        className="grid h-[32px] w-[32px] flex-[0_0_32px] place-items-center rounded-[8px] border border-solid border-[#e9e7ed] bg-white text-[#696572] hover:border-[#c9c0dc] hover:text-[#382569] [&_svg]:h-[18px] [&_svg]:w-[18px] [&_svg]:fill-none [&_svg]:stroke-current [&_svg]:[stroke-linecap:round] [&_svg]:[stroke-linejoin:round] [&_svg]:[stroke-width:1.8] cursor-pointer"
         type="button"
         onClick={copyPrompt}
         aria-label={`「${title}」のプロンプト内容をコピー`}
@@ -108,9 +107,9 @@ export default function PromptActions({ promptId, title, content, onMenuOpenChan
           </svg>
         )}
       </button>
-      <div className={styles.menuContainer} ref={menuRef}>
+      <div className="relative" ref={menuRef}>
         <button
-          className={styles.menuToggle}
+          className="grid h-[32px] w-[32px] place-items-center rounded-[8px] border border-solid border-transparent bg-transparent text-[#696572] hover:border-[#e9e7ed] hover:bg-[#faf9fc] hover:text-[#382569] aria-expanded:border-[#e9e7ed] aria-expanded:bg-[#faf9fc] aria-expanded:text-[#382569] [&_svg]:h-[19px] [&_svg]:w-[19px] [&_svg]:fill-current cursor-pointer"
           type="button"
           aria-label={`${title}のメニュー`}
           aria-haspopup="menu"
@@ -124,9 +123,10 @@ export default function PromptActions({ promptId, title, content, onMenuOpenChan
           </svg>
         </button>
         {menuOpen && (
-          <div className={styles.menu} role="menu" aria-label={`${title}の操作`}>
-            <button type="button" role="menuitem" onClick={() => setMenuOpen(false)}>ピン留め</button>
+          <div className="absolute right-0 top-[calc(100%+6px)] z-[3] grid w-[136px] rounded-[9px] border border-solid border-[#e9e7ed] bg-white p-[5px] [box-shadow:0_8px_22px_rgb(36_28_55/14%)]" role="menu" aria-label={`${title}の操作`}>
+            <button className="rounded-[6px] border-0 border-none border-[#45424d] bg-transparent px-[10px] py-[9px] text-left text-[#45424d] text-[12px] [font-family:inherit] hover:bg-[#f5f3f8] focus-visible:bg-[#f5f3f8] focus-visible:[outline:none] cursor-pointer" type="button" role="menuitem" onClick={() => setMenuOpen(false)}>ピン留め</button>
             <button
+              className="rounded-[6px] border-0 border-none border-[#45424d] bg-transparent px-[10px] py-[9px] text-left text-[#45424d] text-[12px] [font-family:inherit] hover:bg-[#f5f3f8] focus-visible:bg-[#f5f3f8] focus-visible:[outline:none] cursor-pointer"
               type="button"
               role="menuitem"
               onClick={() => {
@@ -137,7 +137,7 @@ export default function PromptActions({ promptId, title, content, onMenuOpenChan
               編集
             </button>
             <button
-              className={styles.deleteAction}
+              className="rounded-[6px] border-0 border-none border-[#c33b36] bg-transparent px-[10px] py-[9px] text-left text-[#c33b36] text-[12px] [font-family:inherit] hover:bg-[#fff1f0] focus-visible:bg-[#fff1f0] focus-visible:[outline:none] cursor-pointer"
               type="button"
               role="menuitem"
               onClick={() => {
@@ -152,21 +152,21 @@ export default function PromptActions({ promptId, title, content, onMenuOpenChan
       </div>
       {confirmOpen &&
         createPortal(
-          <div className={styles.overlay} onClick={closeConfirm}>
+          <div className="fixed inset-0 z-[100] grid place-items-center bg-[rgb(36_28_55/45%)]" onClick={closeConfirm}>
             <div
-              className={styles.dialog}
+              className="w-[min(90vw,380px)] cursor-default rounded-[12px] bg-white p-[24px] text-[#28252f] [box-shadow:0_16px_40px_rgb(36_28_55/25%)]"
               role="alertdialog"
               aria-modal="true"
               aria-labelledby="delete-dialog-title"
               onClick={(event) => event.stopPropagation()}
             >
-              <p id="delete-dialog-title">プロンプトを削除してよろしいですか？</p>
-              {deleteError && <p className={styles.dialogError} role="alert">{deleteError}</p>}
-              <div className={styles.dialogActions}>
-                <button type="button" className={styles.dialogCancel} autoFocus onClick={closeConfirm}>
+              <p className="m-0 text-[15px] font-bold leading-[1.6]" id="delete-dialog-title">プロンプトを削除してよろしいですか？</p>
+              {deleteError && <p className="m-0 mt-[8px] text-[#b42318] text-[12px] font-normal" role="alert">{deleteError}</p>}
+              <div className="mt-[20px] flex justify-end gap-[10px]">
+                <button type="button" className="h-[38px] min-w-[88px] rounded-[8px] border-0 border-none border-[#45424d] bg-[#ececf0] text-[#45424d] text-[13px] cursor-pointer" autoFocus onClick={closeConfirm}>
                   キャンセル
                 </button>
-                <button type="button" className={styles.dialogOk} disabled={deleting} onClick={confirmDelete}>
+                <button type="button" className="h-[38px] min-w-[88px] rounded-[8px] border-0 border-none border-white bg-[#c33b36] text-white text-[13px] disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer" disabled={deleting} onClick={confirmDelete}>
                   OK
                 </button>
               </div>
