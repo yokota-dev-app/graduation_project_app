@@ -46,7 +46,7 @@ export default function DashboardLayout() {
 
   return (
     <div className="flex h-screen overflow-hidden bg-[#f8f8fa] font-sans text-[#242328]">
-      <aside className="sticky top-0 flex h-screen basis-14 flex-col self-start overflow-y-auto border-r border-r-[#e9e8ec] border-solid bg-white px-1 py-4 sm:basis-16 sm:px-2 md:basis-60 md:items-stretch md:px-4 md:pb-5 md:pt-7">
+      <aside className="sticky top-0 flex h-screen basis-14 flex-col self-start overflow-y-auto border-r border-r-[#e9e8ec] bg-white px-1 py-4 sm:basis-16 sm:px-2 md:basis-60 md:items-stretch md:px-4 md:pb-5 md:pt-7">
         <Link
           className="mb-6 ml-0 flex items-center justify-center gap-3 whitespace-nowrap font-sans text-xl font-extrabold tracking-tight text-[#20212a] sm:mb-8 md:ml-1 md:justify-start md:text-2xl md:[&>span:last-child]:inline"
           to="/"
@@ -85,7 +85,7 @@ export default function DashboardLayout() {
           ))}
         </section>
 
-        <div className="mt-auto flex items-center gap-2.5 border-t border-t-[#e9e8ec] px-0 pt-3.5 border-solid md:px-1">
+        <div className="mt-auto flex items-center gap-2.5 border-t border-t-[#e9e8ec] px-0 pt-3.5 md:px-1">
           <span
             className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#eee9f8] text-sm font-bold text-[#39266a]"
             aria-hidden="true"

@@ -1,5 +1,5 @@
 const FOOTER =
-  'grid h-auto shrink-0 grid-cols-1 items-center gap-2 border-t border-solid border-[#efedf5] bg-white px-5 py-4 text-xs md:flex md:h-14 md:justify-between md:px-8 md:py-0 lg:px-20';
+  'grid h-auto shrink-0 grid-cols-1 items-center gap-2 border-t border-[#efedf5] bg-white px-5 py-4 text-xs md:flex md:h-14 md:justify-between md:px-8 md:py-0 lg:px-20';
 const NAV =
   'flex flex-wrap gap-4 text-[#777485] md:gap-5';
 
