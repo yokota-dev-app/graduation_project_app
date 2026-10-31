@@ -1,35 +1,71 @@
-* {
-  box-sizing: border-box;
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap");
+
+@layer theme, base, utilities;
+
+/* Preflight は読み込まず、既存の見た目を保つ */
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+:root {
+  --top-ink: #20212a;
+  --top-purple: #6854d9;
+  --top-purple-dark: #5140bd;
+  --top-font: "DM Sans", "Noto Sans JP", sans-serif;
 }
 
-html,
-body,
-#root {
-  min-width: 320px;
-  min-height: 100%;
-  margin: 0;
-}
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
 
-html {
-  scrollbar-gutter: stable;
-}
+  html,
+  body,
+  #root {
+    min-width: 320px;
+    min-height: 100%;
+    margin: 0;
+  }
 
-body {
-  min-height: 100vh;
-  font-family: Inter, "Noto Sans JP", system-ui, sans-serif;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #242328;
-  background: #fff;
-}
+  html {
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+  }
 
-#root {
-  min-height: 100vh;
-}
+  body {
+    min-height: 100vh;
+    color: var(--top-ink);
+    font-family: var(--top-font);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #fff;
+  }
 
-button,
-input {
-  font: inherit;
+  #root {
+    min-height: 100vh;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  input {
+    font: inherit;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
 }

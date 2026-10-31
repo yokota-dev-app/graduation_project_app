@@ -1,108 +1,174 @@
+import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import styles from "../../styles/top.module.css";
+
+const buttonClasses =
+  "inline-flex items-center justify-center gap-3 whitespace-nowrap rounded-lg border border-solid border-transparent text-sm font-bold transition duration-200 hover:-translate-y-px";
+const primaryButtonClasses =
+  "bg-(--top-purple) text-white [box-shadow:0_8px_20px_rgba(104,84,217,0.2)] hover:bg-(--top-purple-dark) hover:[box-shadow:0_10px_24px_rgba(104,84,217,0.28)] focus:outline-[#005fcc]";
+
+const highlights = [
+  {
+    icon: "⌕",
+    iconClasses: "bg-[#f0edff] text-[#6c58d7]",
+    title: "すぐ見つかる",
+    description: "検索とカテゴリーで、欲しいプロンプトにすばやくアクセス。",
+  },
+  {
+    icon: "↻",
+    iconClasses: "bg-[#e6f7ef] text-[#3e9b79]",
+    title: "育てて、残せる",
+    description: "変更を重ねたプロンプトも、バージョンごとに管理。",
+  },
+  {
+    icon: "✳",
+    iconClasses: "bg-[#fff1e3] text-[#d28b4b]",
+    title: "すぐ使い回せる",
+    description: "変数を入力して、用途に合うプロンプトをワンクリックでコピー。",
+  },
+];
+
+const features = [
+  {
+    number: "01",
+    icon: "⌕",
+    iconClasses: "bg-[#f0edff] text-[#6d59d9]",
+    title: "まとめて管理・検索",
+    description:
+      "メモ帳やチャットに散らばったプロンプトを、一か所に集約。名前やキーワードからすぐ見つけられます。",
+  },
+  {
+    number: "02",
+    icon: "⟲",
+    iconClasses: "bg-[#e7f7ef] text-[#369a75]",
+    title: "変数をフォームで入力",
+    description:
+      "名前や目的などの変数をフォームに入力するだけ。毎回プロンプトを書き直す手間を減らします。",
+  },
+  {
+    number: "03",
+    icon: "▤",
+    iconClasses: "bg-[#fff1e4] text-[#d58b4b]",
+    title: "プロンプトを育てる",
+    description:
+      "更新したプロンプトを整理して保存。うまくいった形を、次の仕事でも再利用できます。",
+  },
+];
+
+function PrimaryButton({ children }: { children: ReactNode }) {
+  return (
+    <Link
+      className={`${buttonClasses} ${primaryButtonClasses} min-h-13 px-5 sm:px-6`}
+      to="/signup"
+    >
+      {children}
+    </Link>
+  );
+}
 
 function TopView() {
   return (
-    <div className={styles.topPage}>
+    <div className="overflow-hidden bg-white">
       <main>
-        <section className={styles.topHero} aria-labelledby="top-hero-title">
-          <div className={styles.topHeroCopy}>
-            <div className={styles.topEyebrow}>
-              <span className={styles.topEyebrowDot} />
+        <section
+          className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-9 px-5 pt-14 pb-16 md:grid-cols-2 md:gap-6 md:px-8 md:pt-18 md:pb-20 lg:gap-20 lg:px-20 lg:pt-24"
+          aria-labelledby="top-hero-title"
+        >
+          <div className="relative z-10">
+            <div className="inline-flex items-center gap-2 rounded-full border border-solid border-[#e9e4ff] bg-[#f8f6ff] px-3 py-2 text-xs font-bold text-[#6552c5]">
+              <span className="h-2 w-2 rounded-full bg-[#8d7be9] [box-shadow:0_0_0_4px_#e9e4ff]" />
               プロンプトを、使い捨てにしない。
             </div>
-            <h1 id="top-hero-title">
+            <h1
+              className="m-0 mt-6 mb-5 text-4xl leading-relaxed tracking-tight font-extrabold md:text-5xl lg:text-6xl"
+              id="top-hero-title"
+            >
               いつもの仕事を、
               <br />
-              <span>いつものプロンプト</span>で。
+              <span className="text-(--top-purple)">いつものプロンプト</span>で。
             </h1>
-            <p className={styles.topHeroDescription}>
+            <p className="m-0 text-sm leading-loose text-[#777686] md:text-base">
               お気に入りのプロンプトをひとつに整理。
-              <br className={styles.desktopBreak} />
+              <br />
               変数や出力例と一緒に保存して、必要なときにすぐ使えます。
             </p>
-            <div className={styles.topHeroActions}>
-              <Link className={`${styles.topButton} ${styles.topButtonPrimary}`} to="/signup">
+            <div className="mt-8 flex flex-wrap items-center gap-6 sm:gap-5">
+              <PrimaryButton>
                 無料で使い始める
                 <span aria-hidden="true">→</span>
-              </Link>
-              <a className={styles.topTextLink} href="#features">
-                機能を見る <span aria-hidden="true">↓</span>
+              </PrimaryButton>
+              <a className="text-sm font-bold text-[#5e5a70]" href="#features">
+                機能を見る <span className="pl-1 text-(--top-purple)" aria-hidden="true">↓</span>
               </a>
             </div>
-            <p className={styles.topReassurance}>
-              <svg viewBox="0 0 20 20" aria-hidden="true">
+            <p className="mt-5 mb-0 flex items-center gap-2 text-xs text-[#8a8997]">
+              <svg className="h-4 w-4 fill-none stroke-[#58a887] stroke-2 stroke-linecap-round stroke-linejoin-round" viewBox="0 0 20 20" aria-hidden="true">
                 <path d="m4 10 4 4 8-9" />
               </svg>
               まずは、よく使うプロンプトを1つ登録するだけ。
             </p>
           </div>
 
-          <div className={styles.topProductPreview} aria-label="プロンプト管理画面のイメージ">
-            <img 
+          <div className="flex aspect-video w-full max-w-xl items-center justify-center overflow-hidden rounded-lg border-2 border-dashed border-[#d1d5db] bg-[#f3f4f6]" aria-label="プロンプト管理画面のイメージ">
+            <img
               src="/path/xxx.png" /* 画像のパス */
-              alt="プロンプト管理画面のプレースホルダー画像" 
-              className={styles.previewImage}
+              alt="プロンプト管理画面のプレースホルダー画像"
+              className="h-full w-full object-cover"
             />
           </div>
         </section>
 
-        <section className={styles.topBenefits} aria-label="サービスの特徴">
-          <div className={styles.topBenefit}>
-            <span className={`${styles.topBenefitIcon} ${styles.benefitLavender}`}>⌕</span>
-            <div><h2>すぐ見つかる</h2><p>検索とカテゴリーで、欲しいプロンプトにすばやくアクセス。</p></div>
+        <section
+          className="mx-auto grid max-w-7xl grid-cols-1 gap-3 px-5 pb-16 md:grid-cols-3 md:gap-3 md:px-8 md:pb-20 lg:gap-6 lg:px-20 lg:pb-24"
+          aria-label="サービスの特徴"
+        >
+          {highlights.map((highlight) => (
+            <div
+              className="flex items-start gap-3 rounded-xl border border-solid border-[#efedf5] bg-white p-4 lg:gap-4 lg:px-5 lg:py-6"
+              key={highlight.title}
+            >
+              <span className={`grid h-9 w-9 shrink-0 place-items-center rounded-xl text-2xl font-medium lg:h-11 lg:w-11 ${highlight.iconClasses}`}>
+                {highlight.icon}
+              </span>
+              <div>
+                <h2 className="mt-px mb-1.5 text-sm">{highlight.title}</h2>
+                <p className="m-0 text-xs leading-relaxed text-[#858292]">{highlight.description}</p>
+              </div>
+            </div>
+          ))}
+        </section>
+
+        <section className="bg-[#f9f8fc] px-5 pt-16 pb-16 md:px-8 md:pt-20 md:pb-24 lg:px-20" id="features" aria-labelledby="top-features-title">
+          <div className="mx-auto mb-7 max-w-2xl text-center md:mb-10">
+            <span className="text-xs font-extrabold tracking-widest text-[#7564d7]">YOUR PROMPT WORKSPACE</span>
+            <h2 className="mt-3 mb-3 text-2xl leading-normal tracking-tight md:text-3xl" id="top-features-title">プロンプト管理を、もっとシンプルに。</h2>
+            <p className="m-0 text-sm leading-loose text-[#838191]">散らばったメモを探す毎日から、知識を積み上げる毎日へ。</p>
           </div>
-          <div className={styles.topBenefit}>
-            <span className={`${styles.topBenefitIcon} ${styles.benefitMint}`}>↻</span>
-            <div><h2>育てて、残せる</h2><p>変更を重ねたプロンプトも、バージョンごとに管理。</p></div>
-          </div>
-          <div className={styles.topBenefit}>
-            <span className={`${styles.topBenefitIcon} ${styles.benefitPeach}`}>✳</span>
-            <div><h2>すぐ使い回せる</h2><p>変数を入力して、用途に合うプロンプトをワンクリックでコピー。</p></div>
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-3 md:grid-cols-3 md:gap-5">
+            {features.map((feature) => (
+              <article className="relative rounded-2xl border border-solid border-[#eeecf4] bg-white p-6 md:p-7" key={feature.number}>
+                <span className="absolute top-6 right-6 text-xs font-bold tracking-wider text-[#c5c1d4]">{feature.number}</span>
+                <div className={`grid h-12 w-12 place-items-center rounded-xl text-2xl ${feature.iconClasses}`}>
+                  {feature.icon}
+                </div>
+                <h3 className="mt-4 mb-2 text-base md:mt-6">{feature.title}</h3>
+                <p className="m-0 text-xs leading-loose text-[#828090]">{feature.description}</p>
+              </article>
+            ))}
           </div>
         </section>
 
-        <section className={styles.topFeatures} id="features" aria-labelledby="top-features-title">
-          <div className={styles.topSectionHeading}>
-            <span className={styles.topSectionKicker}>YOUR PROMPT WORKSPACE</span>
-            <h2 id="top-features-title">プロンプト管理を、もっとシンプルに。</h2>
-            <p>散らばったメモを探す毎日から、知識を積み上げる毎日へ。</p>
-          </div>
-          <div className={styles.topFeatureGrid}>
-            <article className={styles.topFeatureCard}>
-              <span className={styles.topFeatureNumber}>01</span>
-              <div className={`${styles.topFeatureSymbol} ${styles.featureSymbolPurple}`}>⌕</div>
-              <h3>まとめて管理・検索</h3>
-              <p>メモ帳やチャットに散らばったプロンプトを、一か所に集約。名前やキーワードからすぐ見つけられます。</p>
-            </article>
-            <article className={styles.topFeatureCard}>
-              <span className={styles.topFeatureNumber}>02</span>
-              <div className={`${styles.topFeatureSymbol} ${styles.featureSymbolGreen}`}>⟲</div>
-              <h3>変数をフォームで入力</h3>
-              <p>名前や目的などの変数をフォームに入力するだけ。毎回プロンプトを書き直す手間を減らします。</p>
-            </article>
-            <article className={styles.topFeatureCard}>
-              <span className={styles.topFeatureNumber}>03</span>
-              <div className={`${styles.topFeatureSymbol} ${styles.featureSymbolOrange}`}>▤</div>
-              <h3>プロンプトを育てる</h3>
-              <p>更新したプロンプトを整理して保存。うまくいった形を、次の仕事でも再利用できます。</p>
-            </article>
-          </div>
-        </section>
-
-        <section className={styles.topCta}>
-          <div className={styles.topCtaDecoration} aria-hidden="true">✳</div>
-          <span className={styles.topSectionKicker}>LESS SEARCHING, MORE CREATING</span>
-          <h2>探す時間を減らして、<br />いい仕事に集中しよう。</h2>
-          <p>あなたのプロンプトを、頼れる仕事道具に。</p>
-          <Link className={`${styles.topButton} ${styles.topButtonPrimary}`} to="/signup">無料で使い始める <span aria-hidden="true">→</span></Link>
+        <section className="relative mx-4 my-12 overflow-hidden rounded-2xl bg-[linear-gradient(120deg,#f4f1ff,#faf8ff_55%,#f0f8f5)] px-5 py-12 text-center md:mx-auto md:my-20 md:max-w-6xl md:px-6 md:py-16">
+          <div className="absolute -top-8 right-8 text-9xl text-[rgba(126,107,222,0.12)]" aria-hidden="true">✳</div>
+          <span className="text-xs font-extrabold tracking-widest text-[#7564d7]">LESS SEARCHING, MORE CREATING</span>
+          <h2 className="mt-4 mb-3 text-3xl leading-relaxed tracking-tight md:text-4xl">探す時間を減らして、<br />いい仕事に集中しよう。</h2>
+          <p className="mt-0 mb-6 text-sm text-[#858292]">あなたのプロンプトを、頼れる仕事道具に。</p>
+          <PrimaryButton>無料で使い始める <span aria-hidden="true">→</span></PrimaryButton>
         </section>
       </main>
     </div>
   );
 }
+
 export default function TopPage() {
-  return (
-    <TopView />
-  );
+  return <TopView />;
 }

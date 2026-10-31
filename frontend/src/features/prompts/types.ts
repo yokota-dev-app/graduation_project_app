@@ -5,4 +5,5 @@ export interface Prompt {
   content: string;
   author: string;
   updatedAt: string;
+  variableSettings: Record<string, string>;
 }

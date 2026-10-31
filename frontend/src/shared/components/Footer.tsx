@@ -1,20 +1,25 @@
-import styles from "./Footer.module.css";
+const FOOTER =
+  'grid h-auto shrink-0 grid-cols-1 items-center gap-2 border-t border-[#efedf5] bg-white px-5 py-4 text-xs md:flex md:h-14 md:justify-between md:px-8 md:py-0 lg:px-20';
+const NAV =
+  'flex flex-wrap gap-4 text-[#777485] md:gap-5';
 
-function FooterView() {
-  return(
-    <footer className={styles.topFooter}>
-      <small>© {new Date().getFullYear()} PromptShelf</small>
-      <nav aria-label="フッターメニュー">
-        <a href="/terms">利用規約</a>
-        <a href="/privacy">プライバシーポリシー</a>
-        <a href="/contact">お問い合わせ</a>
-      </nav>
-    </footer>
-  )
-}
+const footerLinks = [
+  { href: '/terms', label: '利用規約' },
+  { href: '/privacy', label: 'プライバシーポリシー' },
+  { href: '/contact', label: 'お問い合わせ' },
+];
 
 export default function Footer() {
   return (
-    <FooterView />
-  )
+    <footer className={FOOTER}>
+      <small className="text-xs text-[#8d8a98]">© {new Date().getFullYear()} PromptShelf</small>
+      <nav className={NAV} aria-label="フッターメニュー">
+        {footerLinks.map((link) => (
+          <a className="hover:text-(--top-purple)" href={link.href} key={link.href}>
+            {link.label}
+          </a>
+        ))}
+      </nav>
+    </footer>
+  );
 }
