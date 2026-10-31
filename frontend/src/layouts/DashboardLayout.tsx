@@ -20,7 +20,7 @@ const navLinkBase =
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   `${navLinkBase} [&>span:last-child]:hidden ${isActive ? 'bg-[#f0eef5] text-[#34265b] font-bold' : 'text-[#55535d]'}`;
 const quickLink =
-  '[&_a]:flex [&_a]:items-center [&_a]:gap-2 [&_a]:p-2.5 [&_a]:text-[#4c4a52] [&_a]:text-xs [&_a:hover]:text-[#302058] [&_a_span:nth-child(2)]:flex-1';
+  '[&_a]:flex [&_a]:items-center [&_a]:gap-2 [&_a]:p-2.5 [&_a]:text-[#4c4a52] [&_a]:text-sm [&_a:hover]:text-[#302058] [&_a_span:nth-child(2)]:flex-1';
 const logoutButton =
   'flex-[0_0_auto] min-h-10 whitespace-nowrap rounded-lg border border-solid border-transparent bg-[#292633] px-3 py-0 text-xs font-bold text-white cursor-pointer hover:bg-[#3a3547] sm:min-h-12 sm:px-5 sm:text-sm';
 
