@@ -61,7 +61,13 @@ export default function MyPage() {
       {error && <p className={styles.errorMessage} role="alert">{error}</p>}
       {!loading && !error && filteredPrompts.length > 0 && (
         <div className={styles.promptGrid}>
-          {filteredPrompts.map((prompt) => <PromptCard key={prompt.id} prompt={prompt} />)}
+          {filteredPrompts.map((prompt) => (
+            <PromptCard
+              key={prompt.id}
+              prompt={prompt}
+              onDeleted={(id) => setPrompts((items) => items.filter((item) => item.id !== id))}
+            />
+          ))}
         </div>
       )}
       {!loading && !error && filteredPrompts.length === 0 && (

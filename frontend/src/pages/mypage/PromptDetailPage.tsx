@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { getPrompt } from '../../features/prompts/api';
 import type { PromptDetail } from '../../features/prompts/api';
 import PromptActions from '../../features/prompts/components/PromptActions';
@@ -17,6 +17,7 @@ export default function PromptDetailPage() {
 }
 
 function PromptDetail({ id }: { id: string }) {
+  const navigate = useNavigate();
   const [showRaw, setShowRaw] = useState(false);
   const [copyFailed, setCopyFailed] = useState(false);
   const [inputs, setInputs] = useState<Record<string, string>>({});
@@ -66,6 +67,7 @@ function PromptDetail({ id }: { id: string }) {
           title={prompt.title}
           content={showRaw ? prompt.content : appliedContent}
           onCopyError={setCopyFailed}
+          onDeleted={() => navigate('/mypage')}
         />
       </div>
       {copyFailed && <p className={styles.error} role="alert">コピーできませんでした。</p>}

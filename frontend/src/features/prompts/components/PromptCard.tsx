@@ -6,9 +6,10 @@ import styles from './PromptCard.module.css';
 
 interface PromptCardProps {
   prompt: Prompt;
+  onDeleted?: (id: number) => void;
 }
 
-export default function PromptCard({ prompt }: PromptCardProps) {
+export default function PromptCard({ prompt, onDeleted }: PromptCardProps) {
   const [copyError, setCopyError] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -32,6 +33,7 @@ export default function PromptCard({ prompt }: PromptCardProps) {
           content={prompt.content}
           onMenuOpenChange={setMenuOpen}
           onCopyError={setCopyError}
+          onDeleted={() => onDeleted?.(prompt.id)}
         />
       </div>
       <p className={styles.summary}>{prompt.summary}</p>

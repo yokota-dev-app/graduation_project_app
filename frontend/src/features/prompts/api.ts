@@ -79,3 +79,7 @@ export async function updatePrompt(id: string, input: CreatePromptInput): Promis
   const response = await apiClient.patch(`/prompts/${id}`, toRequestBody(input));
   return response.data;
 }
+
+export async function deletePrompt(id: number): Promise<void> {
+  await apiClient.delete(`/prompts/${id}`);
+}
