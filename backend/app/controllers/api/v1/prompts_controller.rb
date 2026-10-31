@@ -33,6 +33,35 @@ module Api
         end
       end
 
+      # プロンプト更新（内容や変数が変わった場合は新しいバージョンを追加）
+      def update
+        prompt = current_user.prompts.includes(:prompt_versions).find_by(id: params[:id])
+        return render json: { errors: ['プロンプトが見つかりません'] }, status: :not_found unless prompt
+
+        latest = prompt.prompt_versions.max_by(&:version_number)
+        content = prompt_params[:content]
+        variable_settings = prompt_params[:variable_settings]&.to_h || {}
+
+        saved = Prompt.transaction do
+          prompt.assign_attributes(prompt_params.slice(:title, :description, :is_public))
+          if latest.nil? || latest.content != content || latest.variable_settings != variable_settings
+            prompt.prompt_versions.build(
+              version_number: (latest&.version_number || 0) + 1,
+              content: content,
+              variable_settings: variable_settings
+            )
+          end
+          prompt.updated_at = Time.current
+          prompt.save
+        end
+
+        if saved
+          render json: { id: prompt.id }
+        else
+          render json: { errors: prompt.errors.full_messages }, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def prompt_json(prompt)

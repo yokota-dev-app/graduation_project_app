@@ -27,6 +27,7 @@ export default function PromptCard({ prompt }: PromptCardProps) {
       <div className={styles.cardHeading}>
         <h2>{prompt.title}</h2>
         <PromptActions
+          promptId={prompt.id}
           title={prompt.title}
           content={prompt.content}
           onMenuOpenChange={setMenuOpen}
