@@ -47,22 +47,87 @@
   white-space: pre-wrap;
 }
 
-.variables {
-  display: grid;
-  gap: 8px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+.contentHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
-.variables li {
-  display: flex;
+.rawToggle {
+  height: 30px;
+  padding: 0 12px;
+  border: 1px solid #e7e5ee;
+  border-radius: 8px;
+  background: #fff;
+  color: #493b68;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.rawToggle[aria-pressed='true'] {
+  background: #292633;
+  color: #fff;
+}
+
+.variableValue {
+  color: #5b46a0;
+  font-weight: 700;
+  cursor: default;
+}
+
+.variableValue {
+  position: relative;
+}
+
+.variableValue:hover::after {
+  content: attr(data-name);
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 0;
+  z-index: 1;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #292633;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.4;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.variables {
+  display: grid;
+  gap: 10px;
+}
+
+.variable {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  align-items: center;
   gap: 12px;
+}
+
+.variable code {
+  color: #493b68;
   font-size: 12px;
 }
 
-.variables code {
-  color: #493b68;
+.variable input {
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid #e7e5ee;
+  border-radius: 8px;
+  background: #faf9fc;
+  font: inherit;
+  font-size: 13px;
+}
+
+.variable input:focus {
+  border-color: #7d6aab;
+  outline: none;
 }
 
 .error {

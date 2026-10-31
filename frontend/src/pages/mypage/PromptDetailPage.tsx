@@ -4,8 +4,20 @@ import { getPrompt } from '../../features/prompts/api';
 import type { PromptDetail } from '../../features/prompts/api';
 import styles from './PromptDetailPage.module.css';
 
+const VARIABLE_SPLIT_PATTERN = /\{\{\s*([^{}\s]+)\s*\}\}/;
+
+function extractVariables(content: string): string[] {
+  return [...new Set(content.split(VARIABLE_SPLIT_PATTERN).filter((_, index) => index % 2 === 1))];
+}
+
 export default function PromptDetailPage() {
   const { id = '' } = useParams();
+  return <PromptDetail key={id} id={id} />;
+}
+
+function PromptDetail({ id }: { id: string }) {
+  const [showRaw, setShowRaw] = useState(false);
+  const [inputs, setInputs] = useState<Record<string, string>>({});
   const [prompt, setPrompt] = useState<PromptDetail | null>(null);
   const [error, setError] = useState('');
 
@@ -35,7 +47,9 @@ export default function PromptDetailPage() {
 
   if (!prompt || String(prompt.id) !== id) return <p role="status">読み込み中...</p>;
 
-  const variables = Object.entries(prompt.variableSettings);
+  const variableNames = extractVariables(prompt.content);
+  const valueOf = (name: string) => inputs[name] ?? prompt.variableSettings[name] ?? '';
+  const parts = prompt.content.split(VARIABLE_SPLIT_PATTERN);
 
   return (
     <section className={styles.page}>
@@ -46,21 +60,47 @@ export default function PromptDetailPage() {
       </p>
       {prompt.summary && <p className={styles.summary}>{prompt.summary}</p>}
 
-      <h2>プロンプト内容</h2>
-      <pre className={styles.content}>{prompt.content}</pre>
+      <div className={styles.contentHeading}>
+        <h2>{showRaw ? 'プロンプト原文' : 'プロンプト内容（変数適用後）'}</h2>
+        <button
+          type="button"
+          className={styles.rawToggle}
+          aria-pressed={showRaw}
+          onClick={() => setShowRaw((value) => !value)}
+        >
+          原文表示 {showRaw ? 'ON' : 'OFF'}
+        </button>
+      </div>
+      <pre className={styles.content}>
+        {showRaw
+          ? prompt.content
+          : parts.map((part, index) =>
+              index % 2 === 1 ? (
+                <strong key={index} className={styles.variableValue} data-name={part}>
+                  {valueOf(part) || `{{${part}}}`}
+                </strong>
+              ) : (
+                part
+              ),
+            )}
+      </pre>
 
-      {variables.length > 0 && (
-        <>
-          <h2>変数</h2>
-          <ul className={styles.variables}>
-            {variables.map(([name, value]) => (
-              <li key={name}>
-                <code>{name}</code>
-                <span>{value || '（初期値なし）'}</span>
-              </li>
-            ))}
-          </ul>
-        </>
+      <h2>変数設定</h2>
+      {variableNames.length === 0 ? (
+        <p className={styles.meta}>このプロンプトに変数はありません。</p>
+      ) : (
+        <div className={styles.variables}>
+          {variableNames.map((name) => (
+            <label key={name} className={styles.variable}>
+              <code>{name}</code>
+              <input
+                value={valueOf(name)}
+                onChange={(event) => setInputs((current) => ({ ...current, [name]: event.target.value }))}
+                placeholder="値を入力"
+              />
+            </label>
+          ))}
+        </div>
       )}
     </section>
   );
