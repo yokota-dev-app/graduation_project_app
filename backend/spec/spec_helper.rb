@@ -1,3 +1,12 @@
+# アプリのコードを読み込む前に開始する必要がある
+require "simplecov"
+SimpleCov.start "rails" do
+  enable_coverage :branch
+  add_filter %w[/spec/ /config/ /db/]
+  add_group "Controllers", "app/controllers"
+  add_group "Models", "app/models"
+end
+
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
