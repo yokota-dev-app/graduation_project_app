@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import type { FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../features/auth/useAuth';
 
@@ -9,9 +8,7 @@ const BRAND =
   'inline-flex items-center gap-2.5 whitespace-nowrap text-lg font-extrabold tracking-tight md:text-xl';
 const BRAND_MARK =
   'inline-flex h-8 w-8 md:h-9 md:w-9';
-const SEARCH =
-  'order-3 flex h-11 w-full items-center gap-2.5 rounded-lg border border-solid border-[#e7e5ee] bg-[#faf9fc] px-3 md:order-none md:h-12 md:w-72 md:flex-1 md:max-w-72 lg:w-auto lg:max-w-xl';
-const ACTIONS = 'ml-auto flex items-center gap-2 md:ml-0 md:gap-2.5';
+const ACTIONS = 'ml-auto flex items-center gap-2 md:gap-2.5';
 const BUTTON =
   'inline-flex min-h-10 items-center justify-center gap-3 whitespace-nowrap rounded-lg border border-solid px-3 text-xs font-bold transition duration-200 hover:-translate-y-px md:min-h-12 md:px-5 md:text-sm';
 const BUTTON_QUIET =
@@ -20,18 +17,8 @@ const BUTTON_DARK =
   `${BUTTON} border-transparent bg-[#292633] text-white hover:bg-[#3a3547]`;
 
 export default function Header() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [logoutError, setLogoutError] = useState('');
+    const [logoutError, setLogoutError] = useState('');
   const { user, isLoggedIn, loading, logoutUser } = useAuth();
-
-  const handleSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const query = searchQuery.trim();
-    if (!query) return;
-
-    // MVP: route to your prompt list/search page. Adjust the URL to match your router.
-    window.location.href = `/prompts?query=${encodeURIComponent(query)}`;
-  };
 
   const handleLogout = async () => {
     setLogoutError('');
@@ -54,21 +41,6 @@ export default function Header() {
           </span>
           <span>PromptShelf</span>
         </Link>
-
-        <form className={SEARCH} role="search" onSubmit={handleSearchSubmit}>
-          <svg className="h-5 w-5 shrink-0 fill-none stroke-[#7a7b89] stroke-2 stroke-linecap-round" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="10.8" cy="10.8" r="6.8" />
-            <path d="m16 16 5 5" />
-          </svg>
-          <input
-            className="w-full min-w-0 border-0 outline-none bg-transparent text-(--top-ink) text-sm placeholder:text-[#9999a6]"
-            aria-label="プロンプトを検索"
-            type="search"
-            placeholder="プロンプトを検索..."
-            value={searchQuery}
-            onChange={(event) => setSearchQuery(event.target.value)}
-          />
-        </form>
 
         <nav className={ACTIONS} aria-label="アカウントメニュー">
           {!loading && (isLoggedIn ? (
