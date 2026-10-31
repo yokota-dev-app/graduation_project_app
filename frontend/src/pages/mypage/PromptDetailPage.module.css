@@ -1,0 +1,144 @@
+.page {
+  display: grid;
+  gap: 12px;
+  max-width: 860px;
+  color: #28252f;
+}
+
+.page h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.page h2 {
+  margin: 8px 0 0;
+  color: #45424d;
+  font-size: 13px;
+}
+
+.back {
+  color: #493b68;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.meta {
+  margin: 0;
+  color: #85828c;
+  font-size: 12px;
+}
+
+.summary {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.content {
+  margin: 0;
+  padding: 16px;
+  border: 1px solid #e7e5ee;
+  border-radius: 9px;
+  background: #faf9fc;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.contentHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.rawToggle {
+  height: 30px;
+  padding: 0 12px;
+  border: 1px solid #e7e5ee;
+  border-radius: 8px;
+  background: #fff;
+  color: #493b68;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.rawToggle[aria-pressed='true'] {
+  background: #292633;
+  color: #fff;
+}
+
+.variableValue {
+  color: #5b46a0;
+  font-weight: 700;
+  cursor: default;
+}
+
+.variableValue {
+  position: relative;
+}
+
+.variableValue:hover::after {
+  content: attr(data-name);
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 0;
+  z-index: 1;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #292633;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.4;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.variables {
+  display: grid;
+  gap: 10px;
+}
+
+.variable {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+}
+
+.variable code {
+  color: #493b68;
+  font-size: 12px;
+}
+
+.variable input {
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid #e7e5ee;
+  border-radius: 8px;
+  background: #faf9fc;
+  font: inherit;
+  font-size: 13px;
+}
+
+.variable input:focus {
+  border-color: #7d6aab;
+  outline: none;
+}
+
+.error {
+  margin: 0;
+  color: #b42318;
+  font-size: 13px;
+}

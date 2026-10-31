@@ -9,6 +9,14 @@ module Api
         render json: prompts.map { |prompt| prompt_json(prompt) }
       end
 
+      # 自分のプロンプトの詳細
+      def show
+        prompt = current_user.prompts.includes(:prompt_versions).find_by(id: params[:id])
+        return render json: { errors: ['プロンプトが見つかりません'] }, status: :not_found unless prompt
+
+        render json: prompt_json(prompt)
+      end
+
       # プロンプト作成（初版のバージョンも同時に保存）
       def create
         prompt = current_user.prompts.new(prompt_params.slice(:title, :description, :is_public))
@@ -35,6 +43,7 @@ module Api
           description: prompt.description,
           content: latest&.content.to_s,
           is_public: prompt.is_public,
+          variable_settings: latest&.variable_settings || {},
           author: current_user.name,
           updated_at: prompt.updated_at
         }

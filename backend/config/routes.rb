@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       post 'login', to: 'sessions#create'
       delete 'logout', to: 'sessions#destroy'
       get 'logged_in', to: 'sessions#show'
-      resources :prompts, only: [:index, :create]
+      resources :prompts, only: [:index, :show, :create]
     end
   end
 end
