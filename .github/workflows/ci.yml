@@ -53,10 +53,10 @@ jobs:
       RAILS_ENV: test
       DATABASE_URL: postgresql://postgres:postgres@localhost:5432/backend_test
     steps:
+      - uses: actions/checkout@v4
+
       - name: Install system packages
         run: sudo apt-get update && sudo apt-get install --no-install-recommends -y libpq-dev libvips
-
-      - uses: actions/checkout@v4
 
       - uses: ruby/setup-ruby@v1
         with:
