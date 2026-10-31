@@ -17,6 +17,27 @@ function formatDate(value: string): string {
   return `${date.getFullYear()}/${month}/${day}`;
 }
 
+export interface PromptDetail extends Prompt {
+  isPublic: boolean;
+  variableSettings: Record<string, string>;
+}
+
+export async function getPrompt(id: string): Promise<PromptDetail> {
+  const { data } = await apiClient.get<PromptResponse & { is_public: boolean; variable_settings: Record<string, string> }>(
+    `/prompts/${id}`,
+  );
+  return {
+    id: data.id,
+    title: data.title,
+    summary: data.description ?? '',
+    content: data.content,
+    author: data.author,
+    updatedAt: formatDate(data.updated_at),
+    isPublic: data.is_public,
+    variableSettings: data.variable_settings,
+  };
+}
+
 export async function getMyPrompts(): Promise<Prompt[]> {
   const response = await apiClient.get<PromptResponse[]>('/prompts');
   return response.data.map((item) => ({

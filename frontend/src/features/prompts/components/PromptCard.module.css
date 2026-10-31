@@ -8,6 +8,7 @@
   border-radius: 13px;
   background: #fff;
   box-shadow: 0 3px 12px rgb(36 28 55 / 3%);
+  cursor: pointer;
   transition: box-shadow 160ms ease, transform 160ms ease;
 }
 
@@ -171,6 +172,7 @@
 }
 
 .promptContent {
+  cursor: auto;
   min-height: 126px;
   padding: 13px;
   border: 1px solid #f0eef3;

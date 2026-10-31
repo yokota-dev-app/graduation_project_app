@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { Prompt } from '../types';
 import styles from './PromptCard.module.css';
 
@@ -11,6 +12,8 @@ export default function PromptCard({ prompt }: PromptCardProps) {
   const [copyError, setCopyError] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+  const detailPath = `/mypage/prompts/${prompt.id}`;
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -45,10 +48,18 @@ export default function PromptCard({ prompt }: PromptCardProps) {
   };
 
   return (
-    <article className={`${styles.card} ${menuOpen ? styles.cardMenuOpen : ''}`}>
+    <article
+      className={`${styles.card} ${menuOpen ? styles.cardMenuOpen : ''}`}
+      tabIndex={0}
+      aria-label={`「${prompt.title}」の詳細を開く`}
+      onClick={() => navigate(detailPath)}
+      onKeyDown={(event) => {
+        if (event.target === event.currentTarget && event.key === 'Enter') navigate(detailPath);
+      }}
+    >
       <div className={styles.cardHeading}>
         <h2>{prompt.title}</h2>
-        <div className={styles.cardActions}>
+        <div className={styles.cardActions} onClick={(event) => event.stopPropagation()}>
           <button
             className={styles.copyButton}
             type="button"
@@ -104,7 +115,7 @@ export default function PromptCard({ prompt }: PromptCardProps) {
         <h3>プロンプト内容</h3>
         <span>{prompt.content.length} 文字</span>
       </div>
-      <div className={styles.promptContent}>
+      <div className={styles.promptContent} onClick={(event) => event.stopPropagation()}>
         <pre className={styles.promptText}>{prompt.content}</pre>
       </div>
       {copyError && <p className={styles.copyError} role="alert">コピーできませんでした。</p>}

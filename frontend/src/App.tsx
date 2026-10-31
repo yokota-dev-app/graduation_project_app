@@ -8,6 +8,7 @@ import SignupPage from './pages/auth/SignupPage'
 import DashboardLayout from './layouts/DashboardLayout'
 import MyPage from './pages/mypage/MyPage'
 import PromptCreatePage from './pages/mypage/PromptCreatePage'
+import PromptDetailPage from './pages/mypage/PromptDetailPage'
 import DashboardPlaceholder from './pages/mypage/DashboardPlaceholder'
 import { useAuth } from './features/auth/useAuth'
 
@@ -64,6 +65,7 @@ function App() {
         <Route path="/mypage" element={<DashboardLayout />}>
           <Route index element={<MyPage />} />
           <Route path="create" element={<PromptCreatePage />} />
+          <Route path="prompts/:id" element={<PromptDetailPage />} />
           <Route path="settings" element={<DashboardPlaceholder title="設定" />} />
         </Route>
       </Route>
