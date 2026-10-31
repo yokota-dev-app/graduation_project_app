@@ -4,33 +4,23 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../features/auth/useAuth';
 
 const HEADER =
-  "flex h-[88px] items-center justify-between gap-[28px] [border-bottom:1px_solid_#f0eff5] bg-[rgb(255_255_255/0.94)] px-[clamp(24px,6vw,92px)] " +
-  "max-[1000px]:gap-[16px] max-[1000px]:px-[28px] " +
-  "max-[760px]:h-auto max-[760px]:min-h-[72px] max-[760px]:flex-wrap max-[760px]:px-[20px] max-[760px]:py-[14px]"
+  'flex h-auto min-h-18 flex-wrap items-center justify-between gap-4 border-b border-solid border-[#f0eff5] bg-[rgb(255_255_255/0.94)] px-5 py-3.5 md:flex-nowrap md:gap-4 md:px-8 md:py-0 lg:h-22 lg:gap-7 lg:px-20';
 const BRAND =
-  "inline-flex items-center gap-[11px] whitespace-nowrap text-[22px] font-extrabold tracking-[-0.7px] max-[760px]:text-[19px]"
+  'inline-flex items-center gap-2.5 whitespace-nowrap text-lg font-extrabold tracking-tight md:text-xl';
 const BRAND_MARK =
-  "inline-flex h-[36px] w-[36px] max-[760px]:h-[31px] max-[760px]:w-[31px] " +
-  "[&_svg]:h-full [&_svg]:w-full [&_rect]:[fill:var(--top-purple)] " +
-  "[&_path]:[fill:none] [&_path]:[stroke:white] [&_path]:[stroke-width:2.4] [&_path]:[stroke-linecap:round]"
+  'inline-flex h-8 w-8 md:h-9 md:w-9';
 const SEARCH =
-  "flex h-[46px] w-[min(560px,42vw)] items-center gap-[10px] rounded-[11px] border border-solid border-[#e7e5ee] bg-[#faf9fc] px-[13px] " +
-  "max-[1000px]:w-[min(300px,30vw)] max-[760px]:order-3 max-[760px]:h-[43px] max-[760px]:w-full " +
-  "[&>svg]:h-[21px] [&>svg]:w-[21px] [&>svg]:flex-[0_0_21px] [&>svg]:[fill:none] [&>svg]:[stroke:#7a7b89] [&>svg]:[stroke-width:1.8] [&>svg]:[stroke-linecap:round] " +
-  "[&_input]:w-full [&_input]:min-w-0 [&_input]:[border:0] [&_input]:[outline:0] [&_input]:bg-transparent [&_input]:text-(--top-ink) [&_input]:text-[14px] [&_input]:placeholder:text-[#9999a6]"
-const ACTIONS =
-  "flex items-center gap-[10px] max-[760px]:ml-auto max-[760px]:gap-[7px]"
+  'order-3 flex h-11 w-full items-center gap-2.5 rounded-lg border border-solid border-[#e7e5ee] bg-[#faf9fc] px-3 md:order-none md:h-12 md:w-72 md:flex-1 md:max-w-72 lg:w-auto lg:max-w-xl';
+const ACTIONS = 'ml-auto flex items-center gap-2 md:ml-0 md:gap-2.5';
 const BUTTON =
-  "inline-flex min-h-[46px] items-center justify-center gap-[13px] whitespace-nowrap rounded-[10px] border border-solid px-[20px] text-[14px] font-bold " +
-  "[transition:transform_0.18s_ease,background_0.18s_ease,box-shadow_0.18s_ease] hover:[transform:translateY(-1px)] " +
-  "max-[760px]:min-h-[38px] max-[760px]:px-[12px] max-[760px]:text-[12px]"
+  'inline-flex min-h-10 items-center justify-center gap-3 whitespace-nowrap rounded-lg border border-solid px-3 text-xs font-bold transition duration-200 hover:-translate-y-px md:min-h-12 md:px-5 md:text-sm';
 const BUTTON_QUIET =
-  `${BUTTON} border-[#e8e6ef] bg-white text-[#4c4a5b] hover:bg-[#f8f7fc] max-[420px]:hidden`
+  `${BUTTON} hidden border-[#e8e6ef] bg-white text-[#4c4a5b] hover:bg-[#f8f7fc] sm:inline-flex`;
 const BUTTON_DARK =
-  `${BUTTON} border-transparent bg-[#292633] text-white hover:bg-[#3a3547]`
+  `${BUTTON} border-transparent bg-[#292633] text-white hover:bg-[#3a3547]`;
 
 export default function Header() {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [logoutError, setLogoutError] = useState('');
   const { user, isLoggedIn, loading, logoutUser } = useAuth();
 
@@ -57,20 +47,21 @@ export default function Header() {
       <header className={HEADER}>
         <Link className={BRAND} to="/" aria-label="PromptShelf ホーム">
           <span className={BRAND_MARK} aria-hidden="true">
-            <svg viewBox="0 0 40 40" role="img">
-              <rect x="3" y="3" width="34" height="34" rx="11" />
-              <path d="M13 13h14M13 20h14M13 27h8" />
+            <svg className="h-full w-full" viewBox="0 0 40 40" role="img">
+              <rect className="fill-(--top-purple)" x="3" y="3" width="34" height="34" rx="11" />
+              <path className="fill-none stroke-white stroke-2 stroke-linecap-round" d="M13 13h14M13 20h14M13 27h8" />
             </svg>
           </span>
           <span>PromptShelf</span>
         </Link>
 
         <form className={SEARCH} role="search" onSubmit={handleSearchSubmit}>
-          <svg viewBox="0 0 24 24" aria-hidden="true">
+          <svg className="h-5 w-5 shrink-0 fill-none stroke-[#7a7b89] stroke-2 stroke-linecap-round" viewBox="0 0 24 24" aria-hidden="true">
             <circle cx="10.8" cy="10.8" r="6.8" />
             <path d="m16 16 5 5" />
           </svg>
           <input
+            className="w-full min-w-0 border-0 outline-none bg-transparent text-(--top-ink) text-sm placeholder:text-[#9999a6]"
             aria-label="プロンプトを検索"
             type="search"
             placeholder="プロンプトを検索..."
@@ -82,7 +73,7 @@ export default function Header() {
         <nav className={ACTIONS} aria-label="アカウントメニュー">
           {!loading && (isLoggedIn ? (
             <>
-              <span className={"whitespace-nowrap text-[13px] font-bold text-[#4c4a5b]"}>{user?.name} さん</span>
+              <span className="whitespace-nowrap text-sm font-bold text-[#4c4a5b]">{user?.name} さん</span>
               <button className={BUTTON_DARK} type="button" onClick={handleLogout}>
                 ログアウト
               </button>
@@ -95,7 +86,7 @@ export default function Header() {
           ))}
         </nav>
       </header>
-      {logoutError && <p className={"m-0 bg-[#fff5f4] px-[20px] py-[8px] text-center text-[13px] text-[#b42318]"} role="alert">{logoutError}</p>}
+      {logoutError && <p className="m-0 bg-[#fff5f4] px-5 py-2 text-center text-sm text-[#b42318]" role="alert">{logoutError}</p>}
     </>
   );
 }

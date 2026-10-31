@@ -6,20 +6,15 @@ import { signup } from '../../features/auth/api';
 import { useAuth } from '../../features/auth/useAuth';
 
 const AUTH_CARD =
-  "w-[min(100%,460px)] rounded-[18px] border border-solid border-[#eeecf3] bg-white p-[38px] [box-shadow:0_18px_55px_rgba(37,31,65,0.07)] max-[520px]:px-[22px] max-[520px]:py-[28px] " +
-  "[&_h1]:m-0 [&_h1]:text-[#20212a] [&_h1]:text-[28px] [&_h1]:tracking-[-0.04em]"
+  'w-full max-w-md rounded-2xl border border-solid border-[#eeecf3] bg-white p-6 shadow-[0_18px_55px_rgba(37,31,65,0.07)] sm:p-10 [&_h1]:m-0 [&_h1]:text-3xl [&_h1]:tracking-tight [&_h1]:text-[#20212a]';
 const AUTH_FORM =
-  "grid gap-[17px] " +
-  "[&_label]:grid [&_label]:gap-[7px] [&_label]:text-[#393744] [&_label]:text-[13px] [&_label]:font-bold " +
-  "[&_input]:w-full [&_input]:min-h-[46px] [&_input]:px-[12px] [&_input]:py-0 [&_input]:border [&_input]:border-solid [&_input]:border-[#e4e2eb] [&_input]:rounded-[9px] [&_input]:[outline:none] [&_input]:text-[#20212a] [&_input]:bg-white " +
-  "[&_input]:focus:border-[#8675e3] [&_input]:focus:[box-shadow:0_0_0_3px_rgba(104,84,217,0.12)] " +
-  "[&_button]:min-h-[48px] [&_button]:mt-[3px] [&_button]:[border:0] [&_button]:rounded-[9px] [&_button]:text-white [&_button]:bg-[#6854d9] [&_button]:text-[14px] [&_button]:font-bold [&_button]:cursor-pointer " +
-  "[&_button:hover:not(:disabled)]:bg-[#5140bd] [&_button:disabled]:cursor-wait [&_button:disabled]:opacity-[0.65]"
-const AUTH_PAGE = "grid min-h-[65vh] place-items-center bg-[#faf9fc] px-[20px] pb-[72px] pt-[52px]"
-const AUTH_EYEBROW = "mx-0 mb-[10px] mt-0 text-[#6854d9] text-[11px] font-extrabold tracking-[0.12em]"
-const AUTH_DESC = "mx-0 mb-[26px] mt-[10px] text-[#777583] text-[14px] leading-[1.7]"
-const AUTH_ERROR = "m-0 text-[#b42318] text-[13px] leading-[1.6]"
-const AUTH_SWITCH = "mx-0 mb-0 mt-[23px] text-[#777583] text-[13px] text-center [&_a]:text-[#5a46c5] [&_a]:font-bold"
+  'grid gap-4 [&_label]:grid [&_label]:gap-2 [&_label]:text-sm [&_label]:font-bold [&_label]:text-[#393744] [&_input]:min-h-12 [&_input]:w-full [&_input]:rounded-lg [&_input]:border [&_input]:border-solid [&_input]:border-[#e4e2eb] [&_input]:bg-white [&_input]:px-3 [&_input]:py-0 [&_input]:text-[#20212a] [&_input]:outline-none [&_input]:focus:border-[#8675e3] [&_input]:focus:shadow-[0_0_0_3px_rgba(104,84,217,0.12)] [&_button]:mt-1 [&_button]:min-h-12 [&_button]:cursor-pointer [&_button]:rounded-lg [&_button]:border-0 [&_button]:bg-[#6854d9] [&_button]:text-sm [&_button]:font-bold [&_button]:text-white [&_button:hover:not(:disabled)]:bg-[#5140bd] [&_button:disabled]:cursor-wait [&_button:disabled]:opacity-65';
+const AUTH_PAGE = 'grid min-h-[65vh] place-items-center bg-[#faf9fc] px-5 pb-16 pt-12';
+const AUTH_EYEBROW = 'mx-0 mb-2.5 mt-0 text-xs font-extrabold tracking-widest text-[#6854d9]';
+const AUTH_DESC = 'mb-7 mt-2.5 text-sm leading-relaxed text-[#777583]';
+const AUTH_ERROR = 'm-0 text-sm leading-relaxed text-[#b42318]';
+const AUTH_SWITCH =
+  'mb-0 mt-6 text-center text-sm text-[#777583] [&_a]:font-bold [&_a]:text-[#5a46c5]';
 
 export default function SignupPage() {
   const [name, setName] = useState('');
@@ -30,6 +25,42 @@ export default function SignupPage() {
   const [submitting, setSubmitting] = useState(false);
   const { loginUser } = useAuth();
   const navigate = useNavigate();
+  const fields = [
+    {
+      label: 'お名前',
+      name: 'name',
+      type: 'text',
+      autoComplete: 'name',
+      value: name,
+      onChange: setName,
+    },
+    {
+      label: 'メールアドレス',
+      name: 'email',
+      type: 'email',
+      autoComplete: 'email',
+      value: email,
+      onChange: setEmail,
+    },
+    {
+      label: 'パスワード',
+      name: 'password',
+      type: 'password',
+      autoComplete: 'new-password',
+      minLength: 6,
+      value: password,
+      onChange: setPassword,
+    },
+    {
+      label: 'パスワード（確認）',
+      name: 'password_confirmation',
+      type: 'password',
+      autoComplete: 'new-password',
+      minLength: 6,
+      value: passwordConfirmation,
+      onChange: setPasswordConfirmation,
+    },
+  ];
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -68,52 +99,20 @@ export default function SignupPage() {
         <h1 id="signup-title">新規登録</h1>
         <p className={AUTH_DESC}>アカウントを作成して、プロンプトを整理しましょう。</p>
         <form className={AUTH_FORM} onSubmit={handleSubmit}>
-          <label>
-            お名前
-            <input
-              type="text"
-              name="name"
-              autoComplete="name"
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-              required
-            />
-          </label>
-          <label>
-            メールアドレス
-            <input
-              type="email"
-              name="email"
-              autoComplete="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              required
-            />
-          </label>
-          <label>
-            パスワード
-            <input
-              type="password"
-              name="password"
-              autoComplete="new-password"
-              minLength={6}
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              required
-            />
-          </label>
-          <label>
-            パスワード（確認）
-            <input
-              type="password"
-              name="password_confirmation"
-              autoComplete="new-password"
-              minLength={6}
-              value={passwordConfirmation}
-              onChange={(event) => setPasswordConfirmation(event.target.value)}
-              required
-            />
-          </label>
+          {fields.map((field) => (
+            <label key={field.name}>
+              {field.label}
+              <input
+                type={field.type}
+                name={field.name}
+                autoComplete={field.autoComplete}
+                minLength={field.minLength}
+                value={field.value}
+                onChange={(event) => field.onChange(event.target.value)}
+                required
+              />
+            </label>
+          ))}
           {error && <p className={AUTH_ERROR} role="alert">{error}</p>}
           <button type="submit" disabled={submitting}>
             {submitting ? '登録中...' : 'アカウントを作成'}
