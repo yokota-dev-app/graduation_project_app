@@ -62,6 +62,7 @@ function PromptDetail({ id }: { id: string }) {
       <div className={styles.titleRow}>
         <h1>{prompt.title}</h1>
         <PromptActions
+          promptId={prompt.id}
           title={prompt.title}
           content={showRaw ? prompt.content : appliedContent}
           onCopyError={setCopyFailed}

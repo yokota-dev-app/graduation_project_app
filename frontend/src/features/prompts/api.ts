@@ -58,8 +58,8 @@ export interface CreatePromptInput {
   variableSettings: Record<string, string>;
 }
 
-export async function createPrompt(input: CreatePromptInput): Promise<{ id: number }> {
-  const response = await apiClient.post('/prompts', {
+function toRequestBody(input: CreatePromptInput) {
+  return {
     prompt: {
       title: input.title,
       description: input.description,
@@ -67,6 +67,15 @@ export async function createPrompt(input: CreatePromptInput): Promise<{ id: numb
       is_public: input.isPublic,
       variable_settings: input.variableSettings,
     },
-  });
+  };
+}
+
+export async function createPrompt(input: CreatePromptInput): Promise<{ id: number }> {
+  const response = await apiClient.post('/prompts', toRequestBody(input));
+  return response.data;
+}
+
+export async function updatePrompt(id: string, input: CreatePromptInput): Promise<{ id: number }> {
+  const response = await apiClient.patch(`/prompts/${id}`, toRequestBody(input));
   return response.data;
 }

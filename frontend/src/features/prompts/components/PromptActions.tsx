@@ -1,17 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './PromptActions.module.css';
 
 interface PromptActionsProps {
+  promptId: number;
   title: string;
   content: string;
   onMenuOpenChange?: (open: boolean) => void;
   onCopyError?: (failed: boolean) => void;
 }
 
-export default function PromptActions({ title, content, onMenuOpenChange, onCopyError }: PromptActionsProps) {
+export default function PromptActions({ promptId, title, content, onMenuOpenChange, onCopyError }: PromptActionsProps) {
   const [copied, setCopied] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     onMenuOpenChange?.(menuOpen);
@@ -87,7 +90,16 @@ export default function PromptActions({ title, content, onMenuOpenChange, onCopy
         {menuOpen && (
           <div className={styles.menu} role="menu" aria-label={`${title}の操作`}>
             <button type="button" role="menuitem" onClick={() => setMenuOpen(false)}>ピン留め</button>
-            <button type="button" role="menuitem" onClick={() => setMenuOpen(false)}>編集</button>
+            <button
+              type="button"
+              role="menuitem"
+              onClick={() => {
+                setMenuOpen(false);
+                navigate(`/mypage/prompts/${promptId}/edit`);
+              }}
+            >
+              編集
+            </button>
             <button
               className={styles.deleteAction}
               type="button"
