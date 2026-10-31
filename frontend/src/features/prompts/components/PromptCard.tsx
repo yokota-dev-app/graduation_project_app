@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { Prompt } from '../types';
+import { applyVariables } from '../variables';
 import PromptActions from './PromptActions';
 
 interface PromptCardProps {
@@ -50,7 +51,7 @@ export default function PromptCard({ prompt, onDeleted }: PromptCardProps) {
         <span>{prompt.content.length} 文字</span>
       </div>
       <div className="min-h-32 cursor-auto rounded-lg border border-solid border-[#f0eef3] bg-[#faf9fc] p-3" onClick={(event) => event.stopPropagation()}>
-        <pre className="m-0 [display:-webkit-box] overflow-hidden text-ellipsis whitespace-pre-wrap text-[#65616c] [font-family:inherit] text-sm leading-relaxed [overflow-wrap:anywhere] [-webkit-box-orient:vertical] [-webkit-line-clamp:5] [line-clamp:5]">{prompt.content}</pre>
+        <pre className="m-0 [display:-webkit-box] overflow-hidden text-ellipsis whitespace-pre-wrap text-[#65616c] [font-family:inherit] text-sm leading-relaxed [overflow-wrap:anywhere] [-webkit-box-orient:vertical] [-webkit-line-clamp:5] [line-clamp:5]">{applyVariables(prompt.content, prompt.variableSettings)}</pre>
       </div>
       {copyError && <p className="mt-2 text-[#b42318] text-xs" role="alert">コピーできませんでした。</p>}
       <footer className="mt-auto flex justify-between gap-2 pt-4 text-[#87848e] text-xs">
